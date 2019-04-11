@@ -23,7 +23,6 @@
                 <th>Tasa</th>
                 <th>Motivo</th>
                 <th>Estatus</th>
-                <th>Verificado Por:</th>
                 <th>Verificar</th>
                 <th>Eliminar</th>
               </tr>
@@ -59,7 +58,6 @@
                     </td>
                     <td>{{ $register->reason}}</td>
                     <td>{{ $register->status }}</td>
-                    <td>{{ $register->verifyName }}</td>
                     <td><a href="/verify/entry/{{$register->id}}">Verificar</a></td>
                     <td>
                       <form action="/registers/{{$register->id}}" method="post">

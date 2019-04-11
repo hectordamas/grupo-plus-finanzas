@@ -21,6 +21,8 @@
             <th>Tipo</th>
             <th>Status</th>
             <th>Cuenta Contable</th>
+            <th>Motivo</th>
+            <th>Verficado</th>
           </thead>
           <tbody>
             @foreach($registers as $register)
@@ -39,6 +41,8 @@
                 <td>{{$register->type}}</td>
                 <td>{{$register->status}}</td>
                 <td>{{$register->contable}}</td>
+                <td>{{$register->reason}}</td>
+                <td>{{$register->verifyName}}</td>
               </tr>
               @endif
             @endforeach

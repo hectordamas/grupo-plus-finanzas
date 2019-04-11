@@ -55,7 +55,6 @@ class RegisterController extends Controller
             'account_id' => $bancoDestino->id,
           ]);//Register::create
           $bancoDestino->notavailable = $bancoDestino->notavailable + $register->amount;
-          $bancoDestino->transit = $bancoDestino->transit + $register->amount;
           $bancoDestino->save();
           $transacciones = $request->input('CantidadDeTransacciones');
           for ($i=0; $i < $transacciones; $i++) {
@@ -98,8 +97,9 @@ class RegisterController extends Controller
               $account->entry = $account->entry + $register->amount;
             }elseif($register->type == 'Ingreso' && $register->status == 'Diferido'){
               $account->notavailable = $account->notavailable + $register->amount;
+            }elseif($register->type == 'Egreso' && $register->status == 'Girado'){
               $account->transit = $account->transit + $register->amount;
-            }elseif($register->type == 'Egreso'){
+            }elseif($register->type == 'Egreso' && $register->status == 'Pagado'){
               $account->expense = $account->expense + $register->amount;
             }
       }//endif
@@ -122,13 +122,16 @@ class RegisterController extends Controller
           $account = Account::where('number', $register->account->number)->first();
           if($register->verify && $register->status == 'Disponible'){
             $account->notavailable = $account->notavailable - $register->amount;
-            $account->transit = $account->transit - $register->amount;
             $account->entry = $account->entry + $register->amount;
           }elseif($register->status == 'Diferido'){
             $account->notavailable = $account->notavailable + $register->amount;
             $account->entry = $account->entry - $register->amount;
-          }elseif($register->type == "Egreso") {
+          }elseif($register->type == "Pagado") {
+            $account->transit = $account->transit - $register->amount;
             $account->expense = $account->expense + $register->amount;
+          }elseif($register->type == "Girado"){
+            $account->transit = $account->transit + $register->amount;
+            $account->expense = $account->expense - $register->amount;
           }
         $account->save();
       }//endif
@@ -145,14 +148,15 @@ class RegisterController extends Controller
       $account = Account::where('number', $register->account->number)->first();
       if($register->status == 'Diferido'){
         $account->notavailable = $account->notavailable - $register->amount;
-        $account->transit = $account->transit - $register->amount;
-        $account->entry = $account->entry + $register->amount;
       }elseif($register->status == 'Disponible'){
         $account->entry = $account->entry - $register->amount;
-      }elseif($register->type == "Egreso") {
+      }elseif($register->type == "Girado") {
+        $account->transit = $account->transit - $register->amount;
+      }elseif($register->type == "Pagado"){
         $account->expense = $account->expense - $register->amount;
       }
      $account->save();
+      Register::destroy($id);
       return redirect()->back()->with('message', 'El registro con ID '.$id.' ha sido Eliminado');
     }//enddestroy
     public function show($id){}//endshow

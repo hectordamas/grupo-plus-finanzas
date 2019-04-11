@@ -45,10 +45,16 @@ class EntriesController extends Controller
         'description' => $request->input('observation'),
         'contable' => $request->input('contableAccount'),
         'responsable' => $request->input('responsable'),
+        'reason' => $request->input('reason'),
         'account_id' => $account->id,
       ]);
-      $account->entry = $account->entry + $request->input('amount');
-      $account->save();
+      if($register->type == 'Ingreso' && $register->status == 'Disponible'){
+        $account->entry = $account->entry + $register->amount;
+      }elseif($register->type == 'Ingreso' && $register->status == 'Diferido'){
+        $account->notavailable = $account->notavailable + $register->amount;
+        $account->transit = $account->transit + $register->amount;
+      }
+        $account->save();
       return redirect()->back()->with('message', 'Se ha creado el registro correctamente!');
     }//store
 

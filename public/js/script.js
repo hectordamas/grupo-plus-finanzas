@@ -13,12 +13,15 @@ $('#modal').on('click', function(){
 });
 
 
+$('.update').hide();
 $('#Disponible, #Pagado').on('click', function(){
   $('#verify').prop('checked', true);
+  $('.update').show();
 });
 
 $('#Girado, #Diferido').on('click', function(){
   $('#verify').prop('checked', false);
+  $('.update').hide();
 });
 
 

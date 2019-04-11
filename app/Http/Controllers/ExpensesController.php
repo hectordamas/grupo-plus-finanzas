@@ -31,6 +31,7 @@ class ExpensesController extends Controller
         'description' => $request->input('observation'),
         'contable' => $request->input('contableAccount'),
         'responsable' => $request->input('responsable'),
+        'reason' => $request->input('reason'),
         'account_id' => $account->id,
       ]);
       $account->expense = $account->expense + $register->amount;

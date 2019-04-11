@@ -40,7 +40,11 @@
           <div class="row">
             <div class="col-md-3 form-group">
               <label for="beneficiary">Beneficiario</label>
-              <input type="text" name="beneficiary" id="beneficiary" class="form-control" required>
+              <select name="beneficiary" id="beneficiary" class="form-control select2" required>
+              @foreach($registers->unique('beneficiary') as $register)
+                <option value="{{$register->beneficiary}}">{{$register->beneficiary}}</option>
+              @endforeach
+              </select>
             </div>
             <div class="col-md-3 form-group">
               <label for="contableAccount">Cuenta Contable</label>
@@ -52,7 +56,11 @@
             </div>
             <div class="col-md-3 form-group">
               <label for="responsable">Responsable</label>
-              <input type="text" name="responsable" id="responsable" class="form-control" required>
+              <select name="responsable" id="responsable" class="form-control select2" required>
+              @foreach($registers->unique('responsable') as $register)
+                <option value="{{$register->responsable}}">{{$register->responsable}}</option>
+              @endforeach
+              </select>
             </div>
             <div class="col-md-3 form-group">
               <label for="estatus">Estatus</label>
@@ -65,6 +73,15 @@
 
           <div class="row">
             <div class="col-md-3 form-group">
+              <label for="reason">Motivo</label>
+              <select name="reason" id="reason" class="form-control select2" required>
+              @foreach($registers->unique('reason') as $register)
+                <option value="{{$register->reason}}">{{$register->reason}}</option>
+              @endforeach
+              </select>
+            </div>
+            
+            <div class="col-md-3 form-group">
               <label for="observation">Observaciones</label>
               <input type="text" name="observation" id="observation" class="form-control" required>
             </div>
@@ -72,7 +89,7 @@
 
           <div class="row">
             <div class="col-md-3">
-              <input type="submit" class="btn btn-primary">
+              <input type="submit" value="Crear" class="btn btn-primary">
             </div>
           </div>
 

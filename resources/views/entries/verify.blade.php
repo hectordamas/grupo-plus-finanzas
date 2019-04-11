@@ -77,17 +77,13 @@
                     <tr>
                       <td><strong>Verificado:</strong> </td>
                     @if($register->verify == "Verificado")
-                      <td><input type="checkbox" name="verify" value="Verificado" checked></td>
+                      <td><input type="checkbox" name="verify" id="verify" value="Verificado" checked onclick="return false;"></td>
                     @else
-                      <td><input type="checkbox" name="verify" value="Verificado"></td>
+                      <td><input type="checkbox" name="verify" id="verify" value="Verificado" onclick="return false;"></td>
                     @endif
                     </tr>
                     <tr>
-                      <td><strong>Quién Verifica?:</strong> </td>
-                      <td>{{ $register->verifyName }}</td>
-                    </tr>
-                    <tr>
-                      <td colspan="2">
+                      <td colspan="2" class="update">
                         <input type="submit" value="Actualizar" class="btn btn-primary">
                       </td>
                     </tr>
