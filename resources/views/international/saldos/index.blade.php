@@ -26,11 +26,11 @@
            @endphp
 
           @foreach($company->accounts as $account)
-          @php
-            $totalCompany = $totalCompany + ($account->entry - $account->expense);
-            $totalNotAvailableCompany = $totalNotAvailableCompany + $account->notavailable;
-          @endphp
             @if($account->bank->type == "Banco Internacional")
+              @php
+                $totalCompany = $totalCompany + ($account->entry - $account->expense);
+                $totalNotAvailableCompany = $totalNotAvailableCompany + $account->notavailable;
+              @endphp
               <tr>
                 <td>{{ $account->bank->name }}</td>
                 <td>{{ number_format($account->entry - $account->expense,2,'.', ',')}} USD</td>
@@ -77,24 +77,25 @@
               $totalnotavailable = 0;
               $totaltransit = 0;
               $totalavailableavailable = 0;
+              $entry = 0;
+              $expense = 0;
+              $transit = 0;
+              $notavailable = 0;
             @endphp
+
             @foreach($banks as $bank)
               @if($bank->type == 'Banco Internacional')
                 @php
-                    $entry = 0;
-                    $expense = 0;
-                    $transit = 0;
-                    $notavailable = 0;
                     foreach($bank->accounts as $account){
                       $entry = $entry + $account->entry;
                       $expense = $expense + $account->expense;
                       $transit = $transit + $account->transit;
                       $notavailable = $notavailable + $account->notavailable;
 
-                      $totalavailable = $totalavailable + ($entry - $expense);
-                      $totalnotavailable = $totalnotavailable + $notavailable;
-                      $totaltransit = $totaltransit + $transit;
-                      $totalavailableavailable = $totalavailableavailable + (($entry - $expense) - $transit);
+                      $totalavailable = $totalavailable + ($account->entry - $account->expense);
+                      $totalnotavailable = $totalnotavailable + $account->notavailable;
+                      $totaltransit = $totaltransit + $account->transit;
+                      $totalavailableavailable = $totalavailableavailable + (($account->entry - $account->expense) - $account->transit);
                     }
                   @endphp
               <tr>

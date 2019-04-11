@@ -12,7 +12,7 @@
       <div class="card-body">
         <table class="table table-bordered" id="DataTable">
           <thead class="table-dark">
-            <th>ID:</th>
+            <th>#</th>
             <th>Fecha</th>
             <th>Empresa</th>
             <th>Banco</th>
@@ -20,9 +20,9 @@
             <th>Responsable</th>
             <th>Tipo</th>
             <th>Status</th>
-            <th>Cuenta Contable</th>
+            <th>Cta. Contable</th>
             <th>Motivo</th>
-            <th>Verficado</th>
+            <th><i class="fas fa-check"></i></th>
           </thead>
           <tbody>
             @foreach($registers as $register)
@@ -30,7 +30,7 @@
               <tr>
                 <td>{{$register->id}}</td>
                 <td>{{date_format(new DateTime($register->date), "d/m/Y") }}</td>
-                <td>{{$register->account->company->name}}</td>
+                <td>{{$register->account->company->abbreviation}}</td>
                 <td>{{$register->account->bank->name}}</td>
                 @if($register->type == 'Ingreso')
                 <td>{{number_format($register->amount,2, ',', '.')}} USD</td>

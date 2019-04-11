@@ -12,6 +12,9 @@ $('#modal').on('click', function(){
   $('#modal').fadeOut();
 });
 
+$('#calculator').on('click', function(){
+  window.open("https://codepen.io/hector29/full/peMONg", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=400,height=800");
+});
 
 $('.update').hide();
 $('#Disponible, #Pagado').on('click', function(){
@@ -59,7 +62,7 @@ $('#CantidadDeTransacciones').on('input', function(){
   var Cantidad = $('#Cantidad').val();
   var CantidadDeTransacciones = $('#CantidadDeTransacciones').val();
   for (let i = 0; i < CantidadDeTransacciones; i++){
-    $('.Transacciones').append('<div class="row"><div class="form-group col"><label><strong>Banco Nacional</strong></label><select class="form-control select2 selectTransaction" name="BancoNacionalDeTransacciones'+i+'"></select></div><div class="form-group col"><label><strong>Beneficiario</strong></label><input type="text" class="form-control" name="BeneficiarioDeTransacciones'+i+'"/></div><div class="form-group col"><label for="MontoDeTransacciones'+i+'"><strong>Monto (Bs.S)</strong></label><input type="number" value="0" class="MontoDeTransaccionesEnCambioDeDivisas form-control min-0" data-id="'+i+'" name="MontoDeTransacciones'+i+'" id="MontoDeTransacciones'+ i +'" oninput="compare(this.id, '+ i +')"/><span><strong id="format'+i+'"></strong></span></div></div>');
+    $('.Transacciones').append('<div class="row"><div class="form-group col"><label><strong>Banco Nacional</strong></label><select class="form-control select2 selectTransaction" name="BancoNacionalDeTransacciones'+i+'"></select></div><div class="form-group col"><label><strong>Beneficiario</strong></label><input type="text" class="form-control" name="BeneficiarioDeTransacciones'+i+'"/></div><div class="form-group col"><label for="MontoDeTransacciones'+i+'"><strong>Monto (Bs.S)</strong></label><input type="number" value="0" class="MontoDeTransaccionesEnCambioDeDivisas form-control min-0" min="0" required data-id="'+i+'" name="MontoDeTransacciones'+i+'" id="MontoDeTransacciones'+ i +'" oninput="compare(this.id, '+ i +')"/><span><strong id="format'+i+'"></strong></span></div></div>');
     TotaldeTransacciones = TotaldeTransacciones + $('#MontoDeTransacciones' + i).val();
   }
   $.ajax({
@@ -99,6 +102,25 @@ function compare(id, num){
     $('#format'+ num).html(new Intl.NumberFormat().format($('#' + id).val()) + ' Bs.S');
   }
 }
+
+$('#Divisa').on('submit', function(e){
+  var Cantidad = $('#Cantidad').val();
+  var Tasa = $('#Tasa').val();
+  var CantidadDeTransacciones = $('#CantidadDeTransacciones').val();
+  var TotalOperacion = Tasa * Cantidad;
+  var TotaldeTransacciones = 0;
+  var MontoDeTransacciones = 0;
+  for (let i = 0; i < CantidadDeTransacciones; i++) {
+    MontoDeTransacciones = parseInt($('#MontoDeTransacciones'+ i).val()) || 0;
+    TotaldeTransacciones = TotaldeTransacciones + MontoDeTransacciones;
+  }
+  if(TotaldeTransacciones < TotalOperacion){
+    alert('Ingresa un monto válido');
+    return false;
+  }else{
+    return true
+  }
+});
 
 /*Formatear Montos*/
 $('#Monto').on('input', function () {

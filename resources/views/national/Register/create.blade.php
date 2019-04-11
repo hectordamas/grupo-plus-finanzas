@@ -63,7 +63,7 @@
                   <label for="Monto">
                     <strong>Monto</strong>
                   </label>
-                  <input id="Monto" type="number" class="form-control" name="Monto" required/>
+                  <input id="Monto" type="number" class="form-control" name="Monto" min="0" required/>
                   <span><strong id="MontoFormateado"></strong></span>
                 </div>
                 <div class="form-group col-md-3">
@@ -76,7 +76,7 @@
                   <label for="TASA">
                     <strong>Tasa</strong>
                   </label>
-                  <input id="TASA" type="number" class="form-control" name="TASA" required/>
+                  <input id="TASA" type="number" class="form-control" name="TASA" min="0" required/>
                   <span id="TASASpan"></span>
                 </div>
                 <div class="form-group col-md-3">
@@ -144,7 +144,7 @@
           <!--Segundo Formulario -->
           <!--Segundo Formulario -->
           <div class="FormCambioDivisaWrapper">
-          <form action="/registers" method="post">
+          <form action="/registers" method="post" id="Divisa">
           @csrf
           <input type="hidden" name="TipoRegistro" value="Cambio de Divisa">
           <div>
@@ -161,14 +161,14 @@
                   <label for="Cantidad">
                     <strong>Cantidad (USD)</strong>
                   </label>
-                  <input type="number" id="Cantidad" class="form-control" name="Cantidad" required/>
+                  <input type="number" id="Cantidad" class="form-control" name="Cantidad" min="0" required/>
                   <span><strong id="CantidadFormateada"></strong></span>
                 </div>
                 <div class="form-group col-md-3">
                   <label for="Tasa">
                     <strong>Tasa (Bs.S)</strong>
                   </label>
-                  <input type="number" id="Tasa" class="form-control" name="Tasa" required/>
+                  <input type="number" id="Tasa" class="form-control" name="Tasa" min="0" required/>
                   <span><strong id="TasaFormateada"></strong></span>
                 </div>
                 <div class="form-group col-md-3">
@@ -226,11 +226,15 @@
             </div>
             <div class="CantidadDeTransacciones">
               <div class="row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-3">
                   <label for="CantidadDeTransacciones">
                     <strong>Cantidad De Transacciones</strong>
                   </label>
                   <input id="CantidadDeTransacciones" type="number" min="0" class="form-control" name="CantidadDeTransacciones" />
+                </div>
+
+                <div class="col-md-3 d-flex align-items-center">
+                  <a href="#" class="btn btn-dark rounded-0" id="calculator">Calculadora</a>
                 </div>
               </div>
             </div>

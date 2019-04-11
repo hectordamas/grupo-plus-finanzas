@@ -114,7 +114,7 @@ class RegisterController extends Controller
           $register->status = $request->input('status');
           if($register->verify){
             $register->status = 'Disponible';
-            $register->verifyName = Auth::user()->name;
+            $register->verifyName = Auth::user()->initials;
           }else{
             $register->verifyName = '';
           }
