@@ -25,7 +25,7 @@
   <nav class="navbar navbar-expand-lg navbar-light navbar-laravel" style="background:rgba(255,255,255,0.85);">
       <div class="container">
           <a class="navbar-brand" href="{{ url('/') }}">
-            <img src="/img/logo.png" alt="Logo" width="180px"/>
+            <i class="fas fa-home" style="font-size:30px;"></i>
           </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
               <span class="navbar-toggler-icon"></span>
@@ -37,11 +37,6 @@
                   @guest
 
                   @else
-                      <li class="nav-item">
-                        <a class="nav-link" href="/">
-                          <i class="fas fa-home"></i>
-                        </a>
-                      </li>
                       <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="/bancos-nacionales" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                           Bancos Nacionales
