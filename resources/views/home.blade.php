@@ -77,12 +77,12 @@
       <a href="/usuarios-configuracion" class="background">
         <div class="row">
           <div class="col-md-12 text-center">
-            <i class="fas fa-users" style="font-size:50px; color:white;"></i>
+            <i class="fas fa-user-cog" style="font-size:50px; color:white;"></i>
           </div>
         </div>
         <div class="row">
           <div class="col-md-12">
-            <h2 class="text-center" style="color:white;">Usuarios y Configuración</h2>
+            <h2 class="text-center" style="color:white;">Configuración</h2>
           </div>
         </div>
       </a>
