@@ -7,7 +7,7 @@
 
   <div class="row">
 
-    <a href="/companies" class="panel" style="width:20rem; padding:50px 0; background:#24426f; margin:5px;">
+    <a href="/companies" class="panel">
       <div class="row">
         <div class="col-md-12 text-center">
           <i class="fas fa-building" style="font-size:50px; color:white;"></i>
@@ -20,7 +20,7 @@
       </div>
     </a>
 
-    <a href="/register" class="panel" style="width:20rem; padding:50px 0; background:#51AFE1; margin:5px;">
+    <a href="/register" class="background">
       <div class="row">
         <div class="col-md-12 text-center">
           <i class="fas fa-users" style="font-size:50px; color:white;"></i>

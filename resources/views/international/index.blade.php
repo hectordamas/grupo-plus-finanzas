@@ -6,7 +6,7 @@
   </div>
   <div class="row">
 
-    <a href="/entries/home" class="panel" style="width:20rem; padding:50px 0; background:#24426f; margin:5px;">
+    <a href="/entries/home" class="background">
       <div class="row">
         <div class="col-md-12 text-center">
           <i class="fas fa-balance-scale" style="font-size:50px; color:white;"></i>
@@ -19,7 +19,7 @@
       </div>
     </a>
 
-    <a href="/expenses/create" class="panel" style="width:20rem; padding:50px 0; background:#51AFE1; margin:5px;">
+    <a href="/expenses/create" class="panel">
       <div class="row">
         <div class="col-md-12 text-center">
           <i class="fas fa-cash-register" style="font-size:50px; color:white;"></i>
@@ -32,7 +32,7 @@
       </div>
     </a>
 
-    <a href="/saldos" class="panel" style="width:20rem; padding:50px 0; background:#24426f; margin:5px;">
+    <a href="/saldos" class="background">
       <div class="row">
         <div class="col-md-12 text-center">
           <i class="fas fa-file-invoice" style="font-size:50px; color:white;"></i>
@@ -45,7 +45,7 @@
       </div>
     </a>
 
-    <a href="/reportes/internacionales" class="panel" style="width:20rem; padding:50px 0; background:#51AFE1; margin:5px;">
+    <a href="/reportes/internacionales" class="panel">
       <div class="row">
         <div class="col-md-12 text-center">
           <i class="fas fa-money-check-alt" style="font-size:50px; color:white;"></i>

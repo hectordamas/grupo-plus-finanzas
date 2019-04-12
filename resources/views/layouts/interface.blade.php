@@ -21,7 +21,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js" defer></script>
 </head>
-<body style="background:url('/img/fondo_log_in.jpg'); background-size:cover;background-position:center;background-position:center;background-repeat:no-repeat;background-attachment: fixed;">
+<body style="background:#24426f; background-size:cover;background-position:center;background-position:center;background-repeat:no-repeat;background-attachment: fixed;">
   <nav class="navbar navbar-expand-lg navbar-light navbar-laravel" style="background:rgba(255,255,255,0.85);">
       <div class="container">
           <a class="navbar-brand" href="{{ url('/') }}">

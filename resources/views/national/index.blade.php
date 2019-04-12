@@ -7,7 +7,7 @@
 
   <div class="row">
 
-    <a href="/registers/create" class="panel" style="width:20rem; padding:50px 0; background:#24426f; margin:5px;">
+    <a href="/registers/create" class="panel background" style="width:20rem; padding:50px 0; background:#24426f; margin:5px;">
       <div class="row">
         <div class="col-md-12 text-center">
           <i class="fas fa-cash-register" style="font-size:50px; color:white;"></i>
@@ -33,7 +33,7 @@
       </div>
     </a>
 
-    <a href="/registers" class="panel" style="width:20rem; padding:50px 0; background:#24426f; margin:5px;">
+    <a href="/registers" class="background">
       <div class="row">
         <div class="col-md-12 text-center">
           <i class="fas fa-balance-scale" style="font-size:50px; color:white;"></i>

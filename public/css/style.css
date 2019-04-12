@@ -4,10 +4,10 @@ h1, h2, h3, h4, h5, h6{
 body{
   font-family: 'Raleway', sans-serif;
 }
-.panel{
+.panel,  .background{
   transition: .5s;
 }
-.panel:hover{
+.panel:hover, .background:hover{
   transform: scale(1.05);
   z-index:10;
   transition: .5s;
@@ -27,6 +27,18 @@ body{
 .center-items{
   display:flex;
   justify-content: center;
+}
+.panel{
+  width:20rem; 
+  padding:50px 0; 
+  background:#51AFE1; 
+  margin:5px;
+}
+.background{
+  width:20rem; 
+  padding:50px 0; 
+  margin:5px;
+  background-image:url('/img/fondo_log_in.jpg') !important; 
 }
 /*.nav-link{
   color:black !important;
