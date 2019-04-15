@@ -60,4 +60,5 @@
 
   </div>
 </div>
+@include('alert.modal')
 @endsection

@@ -55,7 +55,7 @@ class EntriesController extends Controller
         $account->transit = $account->transit + $register->amount;
       }
         $account->save();
-      return redirect()->back()->with('message', 'Se ha creado el registro correctamente!');
+      return redirect('/entries/home')->with('message', 'Se ha creado el registro correctamente!');
     }//store
 
     public function update(Request $request, $id){

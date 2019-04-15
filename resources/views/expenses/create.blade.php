@@ -41,6 +41,7 @@
             <div class="col-md-3 form-group">
               <label for="beneficiary">Beneficiario</label>
               <select name="beneficiary" id="beneficiary" class="form-control select2" required>
+              <option value=""></option>
               @foreach($registers->unique('beneficiary') as $register)
                 <option value="{{$register->beneficiary}}">{{$register->beneficiary}}</option>
               @endforeach
@@ -49,6 +50,7 @@
             <div class="col-md-3 form-group">
               <label for="contableAccount">Cuenta Contable</label>
               <select name="contableAccount" id="contableAccount" class="form-control select2" required>
+              <option value=""></option>
               @foreach($registers->unique('contable') as $register)
                 <option value="{{$register->contable}}">{{$register->contable}}</option>
               @endforeach
@@ -57,6 +59,7 @@
             <div class="col-md-3 form-group">
               <label for="responsable">Responsable</label>
               <select name="responsable" id="responsable" class="form-control select2" required>
+              <option value=""></option>
               @foreach($registers->unique('responsable') as $register)
                 <option value="{{$register->responsable}}">{{$register->responsable}}</option>
               @endforeach
@@ -75,6 +78,7 @@
             <div class="col-md-3 form-group">
               <label for="reason">Motivo</label>
               <select name="reason" id="reason" class="form-control select2" required>
+              <option value=""></option>
               @foreach($registers->unique('reason') as $register)
                 <option value="{{$register->reason}}">{{$register->reason}}</option>
               @endforeach

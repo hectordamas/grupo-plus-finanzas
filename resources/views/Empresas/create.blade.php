@@ -12,7 +12,7 @@
           Registrar Cuentas de Empresas
         </div>
         <div class="card-body">
-          <form action="/companies" method="post">
+          <form id="Empresas" action="/companies" method="post">
             @csrf
              <div class="row">
                <div class="form-group col-md-4">

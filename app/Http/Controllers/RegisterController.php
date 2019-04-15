@@ -104,7 +104,7 @@ class RegisterController extends Controller
             }
       }//endif
       $account->save();
-      return redirect()->back()->with('message', 'El registro se ha guardado correctamente!');
+      return redirect('/bancos-nacionales')->with('message', 'El registro se ha guardado correctamente!');
     }//endstore
 
     public function update(Request $request, $id){

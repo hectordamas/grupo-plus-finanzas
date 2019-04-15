@@ -36,7 +36,7 @@ class ExpensesController extends Controller
       ]);
       $account->expense = $account->expense + $register->amount;
       $account->save();
-      return redirect()->back()->with('message', 'Se ha creado el registro correctamente!');
+      return redirect('/bancos-internacionales')->with('message', 'Se ha creado el registro correctamente!');
     }
 
     public function FindAccountsByCompanyAndBank(Request $request){

@@ -12,9 +12,11 @@ $('#modal').on('click', function(){
   $('#modal').fadeOut();
 });
 
+
 $('#calculator').on('click', function(){
   window.open("https://codepen.io/hector29/full/peMONg", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=400,height=800");
 });
+
 
 $('.update').hide();
 $('#Disponible, #Pagado').on('click', function(){
@@ -102,6 +104,16 @@ function compare(id, num){
     $('#format'+ num).html(new Intl.NumberFormat().format($('#' + id).val()) + ' Bs.S');
   }
 }
+
+$('#Empresas').on('submit', function(){
+  var accountNumber = $('#accountNumber').val().length;
+  if(accountNumber < 20){
+    alert('El número de cuenta es menor a 20 digitos, inténtalo nuevamente');
+    return false;
+  }else{
+    return true;
+  }
+});
 
 $('#Divisa').on('submit', function(e){
   var Cantidad = $('#Cantidad').val();

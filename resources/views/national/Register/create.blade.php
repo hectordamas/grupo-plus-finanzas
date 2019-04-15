@@ -93,6 +93,7 @@
                     <strong>Cuenta Contable</strong>
                   </label>
                   <select id="CuentaContable" class="form-control select2" name="CuentaContable">
+                    <option value=""></option>
                   @foreach($registers->unique('contable') as $register)
                     <option value="{{$register->contable}}">{{$register->contable}}</option>
                   @endforeach
@@ -103,6 +104,7 @@
                     <strong>Motivo</strong>
                   </label>
                   <select id="Motivo" class="form-control select2" name="Motivo">
+                  <option value=""></option>
                   @foreach($registers->unique('reason') as $register)
                     <option value="{{$register->reason}}">{{$register->reason}}</option>
                   @endforeach

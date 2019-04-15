@@ -55,7 +55,7 @@ class CompanyController extends Controller
           'bank_id' => $bank->id,
           'company_id' => $company->id,
         ]);
-      return redirect()->back()->with('message', 'La Empresa ha sido registrada correctamente');
+      return redirect('/companies')->with('message', 'La Empresa ha sido registrada correctamente');
     }//endstore
 
     public function search(Request $request){
