@@ -13,31 +13,36 @@ $('#modal').on('click', function(){
 });
 
 $('#DirectoryForm').on('submit', function(e){
-  e.preventDefault();
-  var name = $('#nameDirectory').val();
-  var id = $('#idDirectory').val();
-  var number = $('#numberDirectory').val();
-    $.ajax({
-      headers: {
-        'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
-      },
-      url: '/beneficiaries',
-      type: 'POST',
-      dataType: 'json',
-      data: {
-        identification:id,
-        name:name,
-        number:number,
-      }, 
-      success:function(data){
-        $('#numberDirectory').val('');
-        $('#idDirectory').val('');
-        $('#nameDirectory').val('');
-        $('#DirectoryTable').prepend('<tr><td>'+data.beneficiary.name+'</td><td>'+data.beneficiary.identification+'</td><td>'+data.beneficiary.number+'</td><td><a href="#" onClick="añadirBeneficiario('+data.beneficiary.id+')" class="Añadir" data-id='+data.beneficiary.id+'>Añadir</a></td></tr>');
-        $('#beneficiary').val(data.beneficiary.name);
-        $('.directory-container').css('display', 'none');
-      }
-    });
+  if($('#numberDirectory').val() < 20){
+    alert('El número de cuenta de tener 20 digitos');
+    return false;
+  }else{
+    e.preventDefault();
+    var name = $('#nameDirectory').val();
+    var id = $('#idDirectory').val();
+    var number = $('#numberDirectory').val();
+      $.ajax({
+        headers: {
+          'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
+        },
+        url: '/beneficiaries',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+          identification:id,
+          name:name,
+          number:number,
+        }, 
+        success:function(data){
+          $('#numberDirectory').val('');
+          $('#idDirectory').val('');
+          $('#nameDirectory').val('');
+          $('#DirectoryTable').prepend('<tr><td>'+data.beneficiary.name+'</td><td>'+data.beneficiary.identification+'</td><td>'+data.beneficiary.number+'</td><td><a href="#" onClick="añadirBeneficiario('+data.beneficiary.id+')" class="Añadir" data-id='+data.beneficiary.id+'>Añadir</a></td></tr>');
+          $('#beneficiary').val(data.beneficiary.name);
+          $('.directory-container').css('display', 'none');
+        }
+      });
+  }
 });
 
 $('#CrearSolicitud').on('submit', function(){
@@ -64,6 +69,10 @@ $('.Añadir').on('click', function(){
     }
   });
 });
+function formatDemandAmount(value){
+  var demandAmount = new Intl.NumberFormat().format(value);
+  $('#demandAmount').html(demandAmount);
+}
 
 function añadirBeneficiario(id){
   $.ajax({

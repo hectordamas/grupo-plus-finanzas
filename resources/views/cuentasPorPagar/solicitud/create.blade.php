@@ -51,7 +51,7 @@
                         <label for="">
                             Fecha de Pago
                         </label>
-                        <input type="date" name="datePay" value="" id="datePay" class="form-control">
+                        <input type="date" name="payDate" required id="payDate" class="form-control">
                     </div>
                     <div class="col-md-4">
                         <label for="beneficiary">
@@ -83,6 +83,13 @@
                             <option value="{{$demand->reason}}">{{$demand->reason}}</option>
                         @endforeach
                         </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="amount">
+                            Amount
+                        </label>
+                        <input step="any" type="number" class="form-control" required oninput="formatDemandAmount(this.value)" name="amount" id="amount"/>
+                        <strong id="demandAmount"></strong>
                     </div>
                     <div class="col-md-4">
                         <label for="coin">

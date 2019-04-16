@@ -20,7 +20,7 @@
       </div>
     </a>
 
-    <a href="/registers/create" class="panel">
+    <a href="/demands" class="panel">
       <div class="row">
         <div class="col-md-12 text-center">
           <i class="fas fa-wallet" style="font-size:50px; color:white;"></i>
@@ -28,7 +28,7 @@
       </div>
       <div class="row">
         <div class="col-md-12">
-          <h2 class="text-center" style="color:white;">Operaciones en Trásito</h2>
+          <h2 class="text-center" style="color:white; font-size:25px;">Operaciones en Tránsito</h2>
         </div>
       </div>
     </a>

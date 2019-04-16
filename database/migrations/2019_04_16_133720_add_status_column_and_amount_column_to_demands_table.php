@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddStatusColumnToBeneficiariesTable extends Migration
+class AddStatusColumnAndAmountColumnToDemandsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class AddStatusColumnToBeneficiariesTable extends Migration
      */
     public function up()
     {
-        Schema::table('beneficiaries', function (Blueprint $table) {
-            //
+        Schema::table('demands', function (Blueprint $table) {
+            $table->string('status');
+            $table->float('amount', 100, 2);
         });
     }
 
@@ -25,8 +26,9 @@ class AddStatusColumnToBeneficiariesTable extends Migration
      */
     public function down()
     {
-        Schema::table('beneficiaries', function (Blueprint $table) {
-            //
+        Schema::table('demands', function (Blueprint $table) {
+            $table->dropColumn('status');
+            $table->dropColumn('amount');
         });
     }
 }

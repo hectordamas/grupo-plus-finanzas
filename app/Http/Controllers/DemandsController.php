@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Company;
 use App\Demand;
 use App\Beneficiary;
+use Auth;
+use Mail;
+
 class DemandsController extends Controller
 {
     /**
@@ -15,7 +18,12 @@ class DemandsController extends Controller
      */
     public function index()
     {
-        //
+        $demands = Demand::orderBy('id', 'desc')->where('status', 'En Revisión')->get();
+        $companies = Company::all();
+        return view('cuentasPorPagar.solicitud.index', [
+            'demands' => $demands,
+            'companies' => $companies
+        ]);
     }
 
     /**
@@ -43,18 +51,27 @@ class DemandsController extends Controller
      */
     public function store(Request $request)
     {
-        Demand::create([
+        $data = [
             'departamento' => $request->input('departamento'),
             'currentDate'  => $request->input('currentDate'),
             'payDate'  => $request->input('payDate'),
-            'beneficary'  => $request->input('beneficary'),
+            'beneficary'  => $request->input('beneficiary'),
             'contable'  => $request->input('contable'),
             'reason'  => $request->input('reason'),
+            'amount'  => $request->input('amount'),
+            'status' => 'En Revisión',
             'coin'  => $request->input('coin'),
-            'applicant'  => $request->input('applicant'),
+            'applicant'  => Auth::user()->name,
             'company_id' => $request->input('empresa')
-            ]);
-
+        ];
+        $demand = Demand::create($data);
+        array_push($data, ['id' => $demand->id]);
+        $subject = 'Verifica la solicitud de pago N° '. $demand->id .' realizada por '. $demand->applicant;
+        $email = 'grupoplus.imagen361@gmail.com';
+        Mail::send('cuentasPorPagar.solicitud.mail', $data, function($message){
+            $message->from($email, $subject);
+            $message->to($email)->subject($subject)->cc(['freyerilabrador@gmail.com	', 'ggabboc@hotmail.com']);
+        });
         return redirect('/cuentas-por-pagar')->with('message', 'Tu solicitud ha sido creada de forma exitosa');
     }
 

@@ -17,10 +17,10 @@
                 <div class="form-group col-md-3">
                     <input type="text" id="idDirectory" required placeholder="Identificación" class="form-control">
                 </div>
-                <div class="form-group col-md-3">
-                    <input type="text" id="numberDirectory" required placeholder="Número de Cuenta" class="form-control">
+                <div class="form-group col-md-4">
+                    <input type="number" id="numberDirectory" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required placeholder="Número de Cuenta" class="form-control">
                 </div>
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-2">
                     <input type="submit" class="btn btn-success rounded-0" value="Registrar">
                 </div>
             </form>
