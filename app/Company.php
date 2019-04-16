@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Bank;
 use App\Account;
 use App\Register;
+use App\Demand;
 
 class Company extends Model
 {
@@ -13,5 +14,9 @@ class Company extends Model
 
   public function accounts(){
     return $this->hasMany(Account::class);
+  }
+
+  public function demands(){
+    return $this->hasMany(Demand::class);
   }
 }

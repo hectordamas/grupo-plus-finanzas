@@ -17,6 +17,7 @@ Route::group(['middleware' => 'auth'], function () {
   Route::get('/bancos-nacionales', function(){return view('national.index');});
   Route::get('/bancos-internacionales', function(){return view('international.index');});
   Route::get('/usuarios-configuracion', function(){ return view('configuracion.index'); });
+  Route::get('/cuentas-por-pagar', function(){ return view('cuentasPorPagar.index'); });
 
   Route::get('/reportes', 'ReportController@search');
   Route::get('/reportes/internacionales', 'ReportController@internationaReport');
@@ -35,6 +36,9 @@ Route::group(['middleware' => 'auth'], function () {
   Route::post('/expenses/create', 'ExpensesController@store');
   Route::get('/saldos', 'SaldosController@index');
   Route::resource('registers', 'RegisterController');
+  Route::resource('demands', 'DemandsController');
+  Route::resource('beneficiaries', 'BeneficiariesController');
+
   Route::get('/registers/list/index', 'ListController@list');
   Route::resource('accounts', 'AccountController');
   Route::resource('companies', 'CompanyController');

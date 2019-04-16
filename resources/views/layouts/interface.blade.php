@@ -18,6 +18,7 @@
     <script type="text/javascript" defer src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>  
     <!--Select2-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js" defer></script>
 </head>
@@ -126,5 +127,8 @@
     @yield('content')
   </div>
   <script src="/js/script.js" defer></script>
+  @isset($beneficiaries)
+    @include('alert.directory');
+  @endisset
   </body>
 </html>

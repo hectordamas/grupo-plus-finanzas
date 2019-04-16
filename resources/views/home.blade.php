@@ -89,4 +89,5 @@
 </div><!--row-->
 
 </div>
+@include('alert.modal')
 @endsection

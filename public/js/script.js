@@ -12,6 +12,80 @@ $('#modal').on('click', function(){
   $('#modal').fadeOut();
 });
 
+$('#DirectoryForm').on('submit', function(e){
+  e.preventDefault();
+  var name = $('#nameDirectory').val();
+  var id = $('#idDirectory').val();
+  var number = $('#numberDirectory').val();
+    $.ajax({
+      headers: {
+        'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
+      },
+      url: '/beneficiaries',
+      type: 'POST',
+      dataType: 'json',
+      data: {
+        identification:id,
+        name:name,
+        number:number,
+      }, 
+      success:function(data){
+        $('#numberDirectory').val('');
+        $('#idDirectory').val('');
+        $('#nameDirectory').val('');
+        $('#DirectoryTable').prepend('<tr><td>'+data.beneficiary.name+'</td><td>'+data.beneficiary.identification+'</td><td>'+data.beneficiary.number+'</td><td><a href="#" onClick="añadirBeneficiario('+data.beneficiary.id+')" class="Añadir" data-id='+data.beneficiary.id+'>Añadir</a></td></tr>');
+        $('#beneficiary').val(data.beneficiary.name);
+        $('.directory-container').css('display', 'none');
+      }
+    });
+});
+
+$('#CrearSolicitud').on('submit', function(){
+    if($('#beneficiary').val() == ''){
+      alert('Por Favor, añade un beneficiario o proveedor');
+      return false;
+    }else{
+      return true;
+    }
+});
+
+$('.Añadir').on('click', function(){
+  var id = $(this).data('id');
+  $.ajax({
+    headers:{
+      'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
+    },
+    url: '/beneficiaries/' + id,
+    type: 'GET',
+    dataType: 'json',
+    success: function(data){
+      $('#beneficiary').val(data.beneficiary.name);
+      $('.directory-container').css('display', 'none');
+    }
+  });
+});
+
+function añadirBeneficiario(id){
+  $.ajax({
+    headers:{
+      'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
+    },
+    url: '/beneficiaries/' + id,
+    type: 'GET',
+    dataType: 'json',
+    success: function(data){
+      $('#beneficiary').val(data.beneficiary.name);
+      $('.directory-container').css('display', 'none');
+    }
+  });
+}
+
+$('#Directory').on('click', function(){
+  $('.directory-container').css('display', 'flex');
+});
+$('#Close').on('click', function(){
+  $('.directory-container').css('display', 'none');
+});
 
 $('#calculator').on('click', function(){
   window.open("https://codepen.io/hector29/full/peMONg", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=400,height=800");
