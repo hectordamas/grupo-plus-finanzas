@@ -39,6 +39,12 @@ Route::group(['middleware' => 'auth'], function () {
   Route::resource('demands', 'DemandsController');
   Route::resource('beneficiaries', 'BeneficiariesController');
 
+  Route::get('/forpay', 'EditDemandsController@index');
+  Route::get('/edit/demands/{id}', 'EditDemandsController@edit');
+  Route::post('/update/demands/{id}', 'EditDemandsController@update');
+  Route::post('/updatePaid/demands/{id}', 'EditDemandsController@updatePaid');
+
+
   Route::get('/registers/list/index', 'ListController@list');
   Route::resource('accounts', 'AccountController');
   Route::resource('companies', 'CompanyController');

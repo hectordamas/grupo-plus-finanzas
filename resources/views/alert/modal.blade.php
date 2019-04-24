@@ -9,7 +9,7 @@
     display:flex; 
     justify-content:center;
     align-items:center;">
-      <div class="card" style="paddign:50px;">
+      <div class="card" style="padding:50px;">
         <div class="card-body">
         <div class="row d-flex justify-content-center">
             <i class="far fa-check-circle" style="font-size:80px; color:#51AFE1;"></i>

@@ -51,26 +51,29 @@ class DemandsController extends Controller
      */
     public function store(Request $request)
     {
-        $data = [
+        $beneficiary = Beneficiary::find($request->input('beneficiary'));
+        $demand = Demand::create([
             'departamento' => $request->input('departamento'),
             'currentDate'  => $request->input('currentDate'),
             'payDate'  => $request->input('payDate'),
-            'beneficary'  => $request->input('beneficiary'),
+            'beneficary'  => $beneficiary->name,
+            'beneficiary_id'=> $beneficiary->id,
+            'user_id' => Auth::id(),
             'contable'  => $request->input('contable'),
             'reason'  => $request->input('reason'),
             'amount'  => $request->input('amount'),
             'status' => 'En Revisión',
             'coin'  => $request->input('coin'),
             'applicant'  => Auth::user()->name,
-            'company_id' => $request->input('empresa')
-        ];
-        $demand = Demand::create($data);
-        array_push($data, ['id' => $demand->id]);
-        $subject = 'Verifica la solicitud de pago N° '. $demand->id .' realizada por '. $demand->applicant;
-        $email = 'grupoplus.imagen361@gmail.com';
-        Mail::send('cuentasPorPagar.solicitud.mail', $data, function($message){
+            'company_id' => $request->input('empresa'),
+            'paid' => 'Por Pagar',
+        ]);
+        Mail::send('cuentasPorPagar.solicitud.mail', ['demand'=> $demand], function($message) use ($demand){
+            $subject = 'Verifica la solicitud N° '. $demand->id .' realizada por '. Auth::user()->name;
+            $email = 'grupoplus.imagen361@gmail.com';
+
             $message->from($email, $subject);
-            $message->to($email)->subject($subject)->cc(['freyerilabrador@gmail.com	', 'ggabboc@hotmail.com']);
+            $message->to($email)->subject($subject)->cc(['freyerilabrador@gmail.com', 'ggabboc@hotmail.com']);
         });
         return redirect('/cuentas-por-pagar')->with('message', 'Tu solicitud ha sido creada de forma exitosa');
     }

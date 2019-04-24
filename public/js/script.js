@@ -8,8 +8,23 @@ setTimeout(function(){
   $('.success-message').fadeOut();
 }, 1000);
 
+setTimeout(function(){
+  $('.checked-container').fadeOut();
+}, 2000);
+
 $('#modal').on('click', function(){
   $('#modal').fadeOut();
+});
+$('.checked-container').on('click', function(){
+  $('.checked-container').fadeOut();
+});
+
+$('.paid').on('click', function(){
+  $('#paidForm').submit();
+});
+
+$('.statusDemands').on('click', function(){
+  $('#formDemandsStatus').submit();
 });
 
 $('#DirectoryForm').on('submit', function(e){
@@ -38,7 +53,7 @@ $('#DirectoryForm').on('submit', function(e){
           $('#idDirectory').val('');
           $('#nameDirectory').val('');
           $('#DirectoryTable').prepend('<tr><td>'+data.beneficiary.name+'</td><td>'+data.beneficiary.identification+'</td><td>'+data.beneficiary.number+'</td><td><a href="#" onClick="añadirBeneficiario('+data.beneficiary.id+')" class="Añadir" data-id='+data.beneficiary.id+'>Añadir</a></td></tr>');
-          $('#beneficiary').val(data.beneficiary.name);
+          $('#beneficiary').html('<option value="'+data.beneficiary.id+'">'+data.beneficiary.name+'</option>');
           $('.directory-container').css('display', 'none');
         }
       });
@@ -64,7 +79,7 @@ $('.Añadir').on('click', function(){
     type: 'GET',
     dataType: 'json',
     success: function(data){
-      $('#beneficiary').val(data.beneficiary.name);
+      $('#beneficiary').html('<option value="'+data.beneficiary.id+'">'+data.beneficiary.name+'</option>');
       $('.directory-container').css('display', 'none');
     }
   });
@@ -83,7 +98,7 @@ function añadirBeneficiario(id){
     type: 'GET',
     dataType: 'json',
     success: function(data){
-      $('#beneficiary').val(data.beneficiary.name);
+    $('#beneficiary').html('<option value="'+data.beneficiary.id+'">'+data.beneficiary.name+'</option>');
       $('.directory-container').css('display', 'none');
     }
   });

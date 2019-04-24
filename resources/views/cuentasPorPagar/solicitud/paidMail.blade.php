@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>GrupoPlus Finanzas</title>
+    <title>Document</title>
 </head>
 <body>
-    <h3>Verifica la solicitud N° {{$demand->id}} </h3>
-    <br>
+<h3>La solicitud N° {{$demand->id}}, Ha sido aprobada </h3>
+<br>
     <table border="1px" cellpadding="10px">
         <thead>
             <th>#</th>
@@ -40,6 +40,5 @@
         </tbody>
     </table>
     <br>
-    <p><a href="{{ url('/edit/demands/'. $demand->id) }}" target="_blank">Haz click aquí</a> para aprobar la solicitud</p>
 </body>
 </html>

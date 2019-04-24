@@ -1,19 +1,18 @@
 @extends('layouts.interface')
 @section('content')
-<div class="container-fluid">
-    <br>
-    <div class="row">
-        <a href="/cuentas-por-pagar" style="color:white;"><i class="fas fa-arrow-left"></i> Volver Atrás</a>
-    </div>
-    <br>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    Operaciones en Tránsito 
-                </div>
-                <div class="card-body">
-                    <table class="table table-striped table-bordered" id="DataTable">
+<div class="container-fluid" style="margin-top:30px;">
+  <div class="row">
+    <a href="/" style="color:white;"><i class="fas fa-arrow-left"></i> Volver Atrás</a>
+  </div>
+
+  <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                Operaciones por Pagar
+            </div>
+            <div class="card-body">
+                <table class="table table-striped table-bordered" id="DataTable">
                         <thead class="table-dark">
                             <th>#</th>
                             <th>Dpto.</th>
@@ -24,7 +23,7 @@
                             <th>Cta. Contable</th>
                             <th>Motivo</th>
                             <th>Monto</th>
-                            <th>Status</th>
+                            <th>Estatus</th>
                         </thead>
                         <tbody>
                         @foreach($demands as $demand)
@@ -38,18 +37,24 @@
                                 <td> {{$demand->contable}}</td>
                                 <td> {{$demand->reason}} </td>
                                 <td> {{number_format($demand->amount, 2, '.', ',') }} {{$demand->coin}} </td>
-                                <td> {{$demand->status}} </td>
+                                <td> 
+                                    <form action="/updatePaid/demands/{{$demand->id}}" method="post" id="paidForm">
+                                        @csrf
+                                        <input type="radio" class="paid" data-id="{{$demand->id}}" name="paid" value="Por Pagar" checked> Por Pagar
+                                        <input type="radio" class="paid" data-id="{{$demand->id}}" name="paid" value="Pagado"> Pagado 
+                                    </form>
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>
-                    </table>
-                </div>
+                 </table>
             </div>
         </div>
-    </div>
+      </div>
+  </div>
 
 
-<br>
+  <br>
     <div class="row">
     @foreach($companies as $company)
         @php
@@ -57,9 +62,9 @@
             $totalBs = 0;
 
             foreach($company->demands as $demand){
-                if($demand->coin == 'USD' && $demand->status == 'En Revisión'){
+                if($demand->coin == 'USD' && $demand->status == 'Aprobado' && $demand->paid == 'Por Pagar'){
                     $totalUSD = $totalUSD + $demand->amount;
-                }elseif($demand->coin == 'Bs.S' && $demand->status == 'En Revisión'){
+                }elseif($demand->coin == 'Bs.S' && $demand->status == 'Aprobado' && $demand->paid == 'Por Pagar'){
                     $totalBs = $totalBs + $demand->amount;
                 }
             }
@@ -89,4 +94,5 @@
     </div><!--row-->
 
 </div>
+@include('alert.modal')
 @endsection

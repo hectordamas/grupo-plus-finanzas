@@ -33,7 +33,7 @@
       </div>
     </a>
 
-    <a href="/registers/create" class="background">
+    <a href="/forpay" class="background">
       <div class="row">
         <div class="col-md-12 text-center">
             <i class="fas fa-money-check-alt" style="font-size:50px; color:white;"></i>

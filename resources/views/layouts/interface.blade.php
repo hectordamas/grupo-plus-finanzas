@@ -80,6 +80,24 @@
 
                       <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="/totalizadores" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                          Ctas. por Pagar
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+
+                        </div>
+                      </li>
+
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="/totalizadores" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                          Facturación                        
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+
+                        </div>
+                      </li>
+
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="/totalizadores" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                           Totalizadores
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -128,7 +146,9 @@
   </div>
   <script src="/js/script.js" defer></script>
   @isset($beneficiaries)
-    @include('alert.directory');
+    @include('alert.directory')
   @endisset
+    @include('alert.processing')
+    @include('alert.checked')
   </body>
 </html>
