@@ -15,6 +15,13 @@
                     <input type="text" id="nameDirectory"  required placeholder="Nombre" class="form-control">
                     <span class="text-danger nameDirectory"></span>
                 </div>
+                <div class="form-group col-md-2">
+                    <select id="nation" required class="form-control">
+                        <option value="V">V</option>
+                        <option value="J">J</option>
+                        <option value="E">E</option>
+                    </select>
+                </div>
                 <div class="form-group col-md-3">
                     <input type="text" id="idDirectory" required placeholder="Identificación" class="form-control">
                     <span class="text-danger idDirectory"></span>
@@ -27,11 +34,13 @@
                     <input type="submit" class="btn btn-success rounded-0" value="Registrar">
                 </div>
             </form>
+            <hr>
             <div class="row">
                 <div class="col-md-12">
-                    <table class="table table-bordered DataTable" id="DirectoryTable">
+                    <table class="table table-bordered" id="DirectoryTable">
                         <thead class="table-dark">
                             <th>Beneficiario</th>
+                            <th>Tipo</th>
                             <th>Identificación</th>
                             <th>N° de Cuenta</th>
                             <th></th>
@@ -40,6 +49,7 @@
                             @foreach($beneficiaries as $beneficiary)
                                 <tr>
                                     <td> {{$beneficiary->name}} </td>
+                                    <td> {{$beneficiary->nation}} </td>
                                     <td> {{$beneficiary->identification}} </td>
                                     <td> {{$beneficiary->number}} </td>
                                     <td> <a href="#" class="Añadir" data-id="{{$beneficiary->id}}">Añadir</a> </td>

@@ -37,6 +37,21 @@
                                       </span>
                                   @endif
                           </div>
+                         </div>  
+                         
+                         <div class="row">
+                         <div class="form-group col">
+                              <label for="role">Rol</label>
+                                <select id="role" class="form-control{{ $errors->has('role') ? ' is-invalid' : '' }}" name="role" value="{{ old('role') }}">
+                                    <option value="">Mortal</option>  
+                                    <option value="Jefe">Jefe</option>  
+                                </select>
+                                  @if ($errors->has('role'))
+                                      <span class="invalid-feedback" role="alert">
+                                          <strong>{{ $errors->first('role') }}</strong>
+                                      </span>
+                                  @endif
+                          </div>
                          </div>   
                         
                         <div class="row">

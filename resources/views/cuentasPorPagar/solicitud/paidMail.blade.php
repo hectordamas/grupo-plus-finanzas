@@ -7,7 +7,11 @@
     <title>Document</title>
 </head>
 <body>
-<h3>La solicitud N° {{$demand->id}}, Ha sido aprobada </h3>
+@if($demand->status == 'Aprobado')
+    <h3>La solicitud N° {{$demand->id}}, Ha sido aprobada </h3>
+@else
+    <h3>La solicitud N° {{$demand->id}}, Ha sido rechazada </h3>
+@endif
 <br>
     <table border="1px" cellpadding="10px">
         <thead>

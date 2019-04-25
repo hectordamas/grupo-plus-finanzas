@@ -38,8 +38,9 @@ class EditDemandsController extends Controller
         $demand->status = $request->input('status');
         $demand->save();
 
-        Mail::send('cuentasPorPagar.solicitud.paidMail', ['demand'=> $demand], function($message) use ($demand){
-            $subject = 'La solicitud N° '. $demand->id .' realizada por '. Auth::user()->name . ', ha sido aprobada';
+        Mail::send('cuentasPorPagar.solicitud.paidMail', ['demand'=> $demand], function($message) use ($demand, $request){
+            $val = ($request->input('status') == 'Aprobado')? ', ha sido aprobada': ', ha sido Rechazada';
+            $subject = 'La solicitud N° '. $demand->id .' realizada por '. Auth::user()->name . $val;
             $email = 'grupoplus.imagen361@gmail.com';
 
             $message->to($email, $subject);

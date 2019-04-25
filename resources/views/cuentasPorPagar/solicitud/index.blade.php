@@ -25,6 +25,9 @@
                             <th>Motivo</th>
                             <th>Monto</th>
                             <th>Status</th>
+                            @if(Auth::user()->role == 'Jefe')
+                                <th></th>
+                            @endif
                         </thead>
                         <tbody>
                         @foreach($demands as $demand)
@@ -39,6 +42,9 @@
                                 <td> {{$demand->reason}} </td>
                                 <td> {{number_format($demand->amount, 2, '.', ',') }} {{$demand->coin}} </td>
                                 <td> {{$demand->status}} </td>
+                                @if(Auth::user()->role == 'Jefe')
+                                    <td><a href="/edit/demands/{{$demand->id}}">Revisar</a></td>
+                                @endif
                             </tr>
                         @endforeach
                         </tbody>

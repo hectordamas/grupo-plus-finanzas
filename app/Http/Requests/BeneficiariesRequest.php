@@ -23,11 +23,12 @@ class BeneficiariesRequest extends FormRequest
      */
     public function messages(){
         return [
-            'name.required' => 'El campo es requerido',
-            'identification.required' => 'El Campo es requerido',
-            'identification.unique' => "Ya se han identificado con este número, iténtalo con otro",
-            'number.required' => 'El campo es requerido',
-            'number.min' => 'El número de cuenta debe tener 20 digitos'   
+            'name.required' => 'El campo es requerido.',
+            'identification.required' => 'El Campo es requerido.',
+            'identification.unique' => "Ya se han registrado con este número, inténtalo con otro.",
+            'number.required' => 'El campo es requerido.',
+            'number.min' => 'El número de cuenta debe tener 20 digitos.',
+            'nation.required' => 'Nacionalidad requerida.'   
         ];
     }
 
@@ -36,7 +37,8 @@ class BeneficiariesRequest extends FormRequest
         return [
             'name' => 'required',
             'identification' => 'required|unique:beneficiaries',
-            'number' => 'required|min:20'
+            'number' => 'required|min:20',
+            'nation' => 'required'
         ];
     }
 }

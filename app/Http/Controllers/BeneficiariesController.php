@@ -40,6 +40,7 @@ class BeneficiariesController extends Controller
             'identification' => $request->identification,
             'name' => $request->name,
             'number'=> $request->number,
+            'nation' => $request->nation
         ]);
 
         return response()->json([

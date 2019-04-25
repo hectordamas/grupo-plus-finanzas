@@ -103,7 +103,14 @@
   @isset($beneficiaries)
     @include('alert.directory')
   @endisset
+
     @include('alert.processing')
     @include('alert.checked')
+
+@if(Request::url() != url('/forpay') && Request::url() != url('/demands'))
+  @isset($demand)
+    @include('alert.modified')
+  @endisset
+@endif
   </body>
 </html>

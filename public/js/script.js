@@ -15,6 +15,9 @@ setTimeout(function(){
 $('#modal').on('click', function(){
   $('#modal').fadeOut();
 });
+$('#modified-link').on('click', function(){
+  $('.modified-container').fadeOut();
+});
 $('.checked-container').on('click', function(){
   $('.checked-container').fadeOut();
 });
@@ -36,6 +39,7 @@ $('#DirectoryForm').on('submit', function(e){
     var name = $('#nameDirectory').val();
     var id = $('#idDirectory').val();
     var number = $('#numberDirectory').val();
+    var nation = $('#nation').val();
       $.ajax({
         headers: {
           'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
@@ -47,12 +51,16 @@ $('#DirectoryForm').on('submit', function(e){
           identification:id,
           name:name,
           number:number,
+          nation:nation,
         }, 
         success:function(data){
+          $('.nameDirectory').html('');
+          $('.idDirectory').html('');
+          $('.numberDirectory').html('');
           $('#numberDirectory').val('');
           $('#idDirectory').val('');
           $('#nameDirectory').val('');
-          $('#DirectoryTable').prepend('<tr><td>'+data.beneficiary.name+'</td><td>'+data.beneficiary.identification+'</td><td>'+data.beneficiary.number+'</td><td><a href="#" onClick="añadirBeneficiario('+data.beneficiary.id+')" class="Añadir" data-id='+data.beneficiary.id+'>Añadir</a></td></tr>');
+          $('#DirectoryTable').prepend('<tr><td>'+data.beneficiary.name+'</td><td>'+data.beneficiary.nation+'</td><td>'+data.beneficiary.identification+'</td><td>'+data.beneficiary.number+'</td><td><a href="#" onClick="añadirBeneficiario('+data.beneficiary.id+')" class="Añadir" data-id='+data.beneficiary.id+'>Añadir</a></td></tr>');
           $('#beneficiary').html('<option value="'+data.beneficiary.id+'">'+data.beneficiary.name+'</option>');
           $('.directory-container').css('display', 'none');
         },
@@ -78,12 +86,11 @@ $('#DirectoryForm').on('submit', function(e){
 });
 
 $('#CrearSolicitud').on('submit', function(){
-    if($('#beneficiary').val() == ''){
-      alert('Por Favor, añade un beneficiario o proveedor');
-      return false;
-    }else{
-      return true;
-    }
+  if(confirm('Estás seguro de crear esta solicitud')){
+    return true
+  }else{
+    return false
+  }
 });
 
 $('.Añadir').on('click', function(){
@@ -532,7 +539,6 @@ $(document).ready(function(){
 });
 
 $('#DataTable').DataTable();
-$('.DataTable').DataTable();
 
 $('.min-0').on('input', function(e){
   var val = $('.min-0').val();
