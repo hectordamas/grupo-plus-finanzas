@@ -13,12 +13,15 @@
             <form class="row" id="DirectoryForm">
                 <div class="form-group col-md-3">
                     <input type="text" id="nameDirectory"  required placeholder="Nombre" class="form-control">
+                    <span class="text-danger nameDirectory"></span>
                 </div>
                 <div class="form-group col-md-3">
                     <input type="text" id="idDirectory" required placeholder="Identificación" class="form-control">
+                    <span class="text-danger idDirectory"></span>
                 </div>
                 <div class="form-group col-md-4">
                     <input type="number" id="numberDirectory" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required placeholder="Número de Cuenta" class="form-control">
+                    <span class="text-danger numberDirectory"></span>
                 </div>
                 <div class="form-group col-md-2">
                     <input type="submit" class="btn btn-success rounded-0" value="Registrar">
@@ -26,7 +29,7 @@
             </form>
             <div class="row">
                 <div class="col-md-12">
-                    <table class="table table-bordered" id="DirectoryTable">
+                    <table class="table table-bordered DataTable" id="DirectoryTable">
                         <thead class="table-dark">
                             <th>Beneficiario</th>
                             <th>Identificación</th>

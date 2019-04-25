@@ -15,8 +15,8 @@ class AddUserIdColumnAndBeneficiaryIdColumnToDemandsTable extends Migration
     {
         Schema::table('demands', function (Blueprint $table) {
             $table->integer('user_id')->unsigned();
-            $table->integer('beneficiary_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
+            $table->integer('beneficiary_id')->unsigned();
             $table->foreign('beneficiary_id')->references('id')->on('beneficiaries');
         });
     }
@@ -29,8 +29,8 @@ class AddUserIdColumnAndBeneficiaryIdColumnToDemandsTable extends Migration
     public function down()
     {
         Schema::table('demands', function (Blueprint $table) {
-            $table->dropForeign('user_id');
-            $table->dropForeign('beneficiary_id');
+            $table->dropForeign(['user_id']);
+            $table->dropForeign(['beneficiary_id']);
         });
     }
 }

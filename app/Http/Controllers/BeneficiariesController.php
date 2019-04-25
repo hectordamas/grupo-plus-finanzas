@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Beneficiary;
+use App\Http\Requests\BeneficiariesRequest;
 
 class BeneficiariesController extends Controller
 {
@@ -33,7 +34,7 @@ class BeneficiariesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BeneficiariesRequest $request)
     {
         $beneficiary = Beneficiary::create([
             'identification' => $request->identification,

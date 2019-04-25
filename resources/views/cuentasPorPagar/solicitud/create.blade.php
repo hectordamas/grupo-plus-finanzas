@@ -87,7 +87,7 @@
                     </div>
                     <div class="col-md-4">
                         <label for="amount">
-                            Amount
+                            Monto
                         </label>
                         <input step="any" type="number" class="form-control" required oninput="formatDemandAmount(this.value)" name="amount" id="amount"/>
                         <strong id="demandAmount"></strong>

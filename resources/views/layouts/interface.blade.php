@@ -38,85 +38,40 @@
                   @guest
 
                   @else
-                      <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="/bancos-nacionales" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                      <li class="nav-item">
+                        <a class="nav-link" href="/bancos-nacionales">
                           Bancos Nacionales
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                          <a class="dropdown-item" href="/registers/create">
-                            Crear un Registro
-                          </a>
-                          <a class="dropdown-item" href="/registers/list/index">
-                            Verificar Registros
-                          </a>
-                          <a class="dropdown-item" href="/registers">
-                            Saldos
-                          </a>
-                          <a class="dropdown-item" href="/reportes">
-                            Reportes
-                          </a>
-                        </div>
                       </li>
 
-                      <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="/bancos-internacionales" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                      <li class="nav-item">
+                        <a class="nav-link" href="/bancos-internacionales">
                           Bancos Internacionales
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                          <a class="dropdown-item" href="/entries/home">
-                            Ingresos
-                          </a>
-                          <a class="dropdown-item" href="/expenses/create">
-                            Egresos
-                          </a>
-                          <a class="dropdown-item" href="/saldos">
-                            Saldos
-                          </a>
-                          <a class="dropdown-item" href="/reportes/internacionales">
-                            Reportes
-                          </a>
-                        </div>
                       </li>
 
-                      <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="/totalizadores" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                      <li class="nav-item">
+                        <a class="nav-link" href="/cuentas-por-pagar">
                           Ctas. por Pagar
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-
-                        </div>
                       </li>
 
-                      <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="/totalizadores" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                      <li class="nav-item">
+                        <a class="nav-link" href="/facturacion-y-cobranza">
                           Facturación                        
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-
-                        </div>
                       </li>
 
-                      <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="/totalizadores" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                      <li class="nav-item">
+                        <a class="nav-link" href="/totalizadores">
                           Totalizadores
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-
-                        </div>
                       </li>
 
-                      <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="/bancos-internacionales" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                      <li class="nav-item">
+                        <a class="nav-link" href="/usuarios-configuracion">
                           Usuarios y Configuración
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                          <a class="dropdown-item" href="/companies">
-                            Empresas
-                          </a>
-                          <a class="dropdown-item" href="/register">
-                            Crear Usuario
-                          </a>
-                        </div>
                       </li>
 
                       <li class="nav-item dropdown">

@@ -55,6 +55,23 @@ $('#DirectoryForm').on('submit', function(e){
           $('#DirectoryTable').prepend('<tr><td>'+data.beneficiary.name+'</td><td>'+data.beneficiary.identification+'</td><td>'+data.beneficiary.number+'</td><td><a href="#" onClick="añadirBeneficiario('+data.beneficiary.id+')" class="Añadir" data-id='+data.beneficiary.id+'>Añadir</a></td></tr>');
           $('#beneficiary').html('<option value="'+data.beneficiary.id+'">'+data.beneficiary.name+'</option>');
           $('.directory-container').css('display', 'none');
+        },
+        error:function(error){
+          if(error.responseJSON.hasOwnProperty('errors')){
+            $('.nameDirectory').html('');
+            $('.idDirectory').html('');
+            $('.numberDirectory').html('');
+
+            if(error.responseJSON.errors.name){
+                $('.nameDirectory').html(error.responseJSON.errors.name);
+            }
+            if(error.responseJSON.errors.identification){
+              $('.idDirectory').html(error.responseJSON.errors.identification);
+            }
+            if(error.responseJSON.errors.number){
+              $('.numberDirectory').html(error.responseJSON.errors.number);
+            }
+          }
         }
       });
   }
@@ -515,6 +532,7 @@ $(document).ready(function(){
 });
 
 $('#DataTable').DataTable();
+$('.DataTable').DataTable();
 
 $('.min-0').on('input', function(e){
   var val = $('.min-0').val();
