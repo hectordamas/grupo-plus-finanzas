@@ -37,7 +37,7 @@
             <hr>
             <div class="row">
                 <div class="col-md-12">
-                    <table class="table table-bordered" id="DirectoryTable">
+                    <table class="table table-bordered DataTable" id="DirectoryTable">
                         <thead class="table-dark">
                             <th>Beneficiario</th>
                             <th>Tipo</th>

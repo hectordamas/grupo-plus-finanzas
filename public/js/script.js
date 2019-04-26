@@ -30,6 +30,26 @@ $('.statusDemands').on('click', function(){
   $('#formDemandsStatus').submit();
 });
 
+$('#nameDirectory').on('select2:select', function(){
+  var name = $('#nameDirectory').val();
+  $.ajax({
+    headers: {
+      'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
+    },
+    url: '/beneficiaries/search/' + name,
+    type: 'POST',
+    dataType: 'json',
+    data:{
+      name: name
+    },
+    success: function(data){
+    $('#idDirectory').val();
+    $('#numberDirectory').val();
+    $('#nation').val();
+    }, 
+  });
+});
+
 $('#DirectoryForm').on('submit', function(e){
   if($('#numberDirectory').val() < 20){
     alert('El número de cuenta de tener 20 digitos');
@@ -539,6 +559,7 @@ $(document).ready(function(){
 });
 
 $('#DataTable').DataTable();
+$('.DataTable').DataTable();
 
 $('.min-0').on('input', function(e){
   var val = $('.min-0').val();
