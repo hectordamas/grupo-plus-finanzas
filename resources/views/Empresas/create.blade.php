@@ -17,7 +17,7 @@
              <div class="row">
                <div class="form-group col-md-4">
                  <label for="name"><strong>Nombre de la Empresa</strong></label>
-                 <select name="name" id="nameSearchCompany" class="form-control select2" required>
+                 <select name="name" id="nameSearchCompany" class="form-control select2">
                    @foreach($companies as $company)
                    <option value="{{$company->name}}">{{$company->name}}</option>
                    @endforeach
@@ -43,14 +43,14 @@
              <div class="row" id="hiddenBankFromCompany">
                <div class="form-group col-md-4">
                  <label for="typeBank"><strong>Tipo de Banco</strong></label>
-                 <select name="typeBank" id="typeBank" class="form-control" required>
+                 <select name="typeBank" id="typeBank" class="form-control">
                    <option value="Banco Nacional">Banco Nacional</option>
                    <option value="Banco Internacional">Banco Internacional</option>
                  <select>
                </div>
                <div class="form-group col-md-4">
                  <label for="bankName"><strong>Nombre del Banco</strong></label>
-                 <select name="bankName" id="bankName" class="form-control select2" required>
+                 <select name="bankName" id="bankName" class="form-control select2">
                    @foreach($banks as $bank)
                      <option value="{{$bank->name}}">{{$bank->name}}</option>
                    @endforeach

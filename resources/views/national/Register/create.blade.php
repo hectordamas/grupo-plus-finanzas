@@ -92,7 +92,7 @@
                   <label for="CuentaContable">
                     <strong>Cuenta Contable</strong>
                   </label>
-                  <select id="CuentaContable" class="form-control select2" name="CuentaContable">
+                  <select id="CuentaContable" class="form-control select2" name="CuentaContable" required>
                     <option value=""></option>
                   @foreach($registers->unique('contable') as $register)
                     <option value="{{$register->contable}}">{{$register->contable}}</option>
@@ -103,7 +103,7 @@
                   <label for="Motivo">
                     <strong>Motivo</strong>
                   </label>
-                  <select id="Motivo" class="form-control select2" name="Motivo">
+                  <select id="Motivo" class="form-control select2" name="Motivo" required>
                   <option value=""></option>
                   @foreach($registers->unique('reason') as $register)
                     <option value="{{$register->reason}}">{{$register->reason}}</option>
@@ -177,7 +177,7 @@
                   <label for="Vendedor">
                     <strong>Vendedor</strong>
                   </label>
-                  <select id="Vendedor" class="form-control select2" name="Vendedor" required>
+                  <select id="Vendedor" class="form-control select2" name="Vendedor">
                   @foreach($registers->unique('seller') as $register)
                     <option value="{{$register->seller}}">{{$register->seller}}</option>
                   @endforeach
@@ -195,7 +195,7 @@
                   <label for="Responsable">
                     <strong>Responsable</strong>
                   </label>
-                  <select id="Responsable" class="form-control select2" name="Responsable" required>
+                  <select id="Responsable" class="form-control select2" name="Responsable">
                   @foreach($registers->unique('responsable') as $register)
                     <option value="{{$register->responsable}}">{{$register->responsable}}</option>
                   @endforeach
@@ -205,7 +205,7 @@
                   <label for="BancoDestino">
                     <strong>Banco Destino</strong>
                   </label>
-                  <select class="form-control" id="BancoDestino" name="BancoDestino">
+                  <select class="form-control" id="BancoDestino" name="BancoDestino" required>
                     <option value=""></option>
                     @foreach($accounts as $account)
                       @if($account->bank->type == "Banco Internacional")
@@ -218,7 +218,7 @@
                   <label for="Concepto">
                     <strong>Concepto</strong>
                   </label>
-                  <select id="Concepto" class="form-control select2" name="Concepto" required>
+                  <select id="Concepto" class="form-control select2" name="Concepto">
                   @foreach($registers->unique('concept') as $register)
                     <option value="{{$register->concept}}">{{$register->concept}}</option>
                   @endforeach

@@ -16,7 +16,7 @@
                     <span class="text-danger nameDirectory"></span>
                 </div>
                 <div class="form-group col-md-2">
-                    <select id="nation" required class="form-control">
+                    <select id="nation" class="form-control">
                         <option value="V">V</option>
                         <option value="J">J</option>
                         <option value="E">E</option>
