@@ -7,6 +7,31 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-md-12">
+                    <table class="table table-bordered DataTable" id="DirectoryTable">
+                        <thead class="table-dark">
+                            <th>Beneficiario</th>
+                            <th>Tipo</th>
+                            <th>Identificación</th>
+                            <th>N° de Cuenta</th>
+                            <th></th>
+                        </thead>
+                        <tbody>
+                            @foreach($beneficiaries as $beneficiary)
+                                <tr>
+                                    <td> {{$beneficiary->name}} </td>
+                                    <td> {{$beneficiary->nation}} </td>
+                                    <td> {{$beneficiary->identification}} </td>
+                                    <td> {{$beneficiary->number}} </td>
+                                    <td> <a href="#" class="Añadir" data-id="{{$beneficiary->id}}">Añadir</a> </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div> 
+            <hr>          
+            <div class="row">
+                <div class="col-md-12">
                     <h6>Registrar un Beneficiario</h6>
                 </div>
             </div>
@@ -34,31 +59,6 @@
                     <input type="submit" class="btn btn-success rounded-0" value="Registrar">
                 </div>
             </form>
-            <hr>
-            <div class="row">
-                <div class="col-md-12">
-                    <table class="table table-bordered DataTable" id="DirectoryTable">
-                        <thead class="table-dark">
-                            <th>Beneficiario</th>
-                            <th>Tipo</th>
-                            <th>Identificación</th>
-                            <th>N° de Cuenta</th>
-                            <th></th>
-                        </thead>
-                        <tbody>
-                            @foreach($beneficiaries as $beneficiary)
-                                <tr>
-                                    <td> {{$beneficiary->name}} </td>
-                                    <td> {{$beneficiary->nation}} </td>
-                                    <td> {{$beneficiary->identification}} </td>
-                                    <td> {{$beneficiary->number}} </td>
-                                    <td> <a href="#" class="Añadir" data-id="{{$beneficiary->id}}">Añadir</a> </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>            
         </div>
     </div>
 </div>

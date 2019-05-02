@@ -22,8 +22,42 @@ $('.checked-container').on('click', function(){
   $('.checked-container').fadeOut();
 });
 
+$('.beneficiary-container').on('click', function(){
+  $('.beneficiary-container').css('display','none');
+});
+$('.beneficiary-modal').on('click', function(){
+  var id = $(this).data('id');
+  $.ajax({
+    headers:{
+      'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
+    },
+    url: '/beneficiaries/' + id,
+    type: 'GET',
+    dataType: 'json',
+    success: function(data){
+      $('.beneficiary-container').css('display','flex');
+      $('.nombre').html(data.beneficiary.name);
+      $('.nation').html(data.beneficiary.nation);
+      $('.identification').html(data.beneficiary.identification);
+      $('.number').html(data.beneficiary.number);
+    }
+  });
+});
+
+
 $('.paid').on('click', function(){
-  $('#paidForm').submit();
+  var id = $(this).data('id');
+  if(confirm('Realmente deseas realizar esta petición?')){
+    $('#paidForm' + id).submit();
+  }else{
+    if($(this).hasClass('paid1')){
+      $('.paid2').prop('checked', true);
+      $('.paid1').prop('checked', false);
+    }else{
+      $('.paid2').prop('checked', false);
+      $('.paid1').prop('checked', true);
+    }
+  }
 });
 
 $('.statusDemands').on('click', function(){
@@ -565,5 +599,20 @@ $('.min-0').on('input', function(e){
   var val = $('.min-0').val();
   if(val <= 0){
     $('.min-0').val('');
+  }
+});
+
+$('.uploadBtn').on('click', function(){
+  var id = $(this).data('id'); 
+  $('.upload-container').css('display', 'flex');
+  $('#UploadPDF').attr('action', '/upload/demand/' + id);
+});
+$('#CloseUpload').on('click', function(){
+  $('.upload-container').css('display', 'none');
+});
+
+$('#customFileUpload').on('change', function(){
+  if(confirm('Realmente deseas realizar esta petición?')){
+    $('#UploadPDF').submit();
   }
 });

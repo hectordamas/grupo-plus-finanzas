@@ -16,13 +16,14 @@
                         <thead class="table-dark">
                             <th>#</th>
                             <th>Dpto.</th>
-                            <th>Empresa</th>
+                            <th>Emp.</th>
                             <th>Fecha de Solicitud</th>
                             <th>Fecha de Pago</th>
                             <th>Beneficiario | Proveedor</th>
                             <th>Cta. Contable</th>
                             <th>Motivo</th>
                             <th>Monto</th>
+                            <th>PDF</th>
                             <th>Estatus</th>
                         </thead>
                         <tbody>
@@ -33,15 +34,22 @@
                                 <td> {{$demand->company->name}} </td>
                                 <td> {{ date_format(new DateTime($demand->currentDate), 'd/m/Y') }} </td>
                                 <td> {{ date_format(new DateTime($demand->payDate), 'd/m/Y') }} </td>
-                                <td> {{$demand->beneficiary->name}} </td>
+                                <td> <a href="#" data-id="{{$demand->beneficiary->id}}" class="beneficiary-modal">{{$demand->beneficiary->name}}</a> </td>
                                 <td> {{$demand->contable}}</td>
                                 <td> {{$demand->reason}} </td>
                                 <td> {{number_format($demand->amount, 2, '.', ',') }} {{$demand->coin}} </td>
+                                <td>
+                                    @if($demand->pdf)
+                                    <a href="{{$demand->pdf}}" target="_blank">Ver</a>
+                                    @else
+                                    <a href="#" class="uploadBtn" data-id="{{$demand->id}}">Subir</a>
+                                    @endif
+                                </td>
                                 <td> 
-                                    <form action="/updatePaid/demands/{{$demand->id}}" method="post" id="paidForm">
+                                    <form action="/updatePaid/demands/{{$demand->id}}" method="post" id="paidForm{{$demand->id}}">
                                         @csrf
-                                        <input type="radio" class="paid" data-id="{{$demand->id}}" name="paid" value="Por Pagar" checked> Por Pagar
-                                        <input type="radio" class="paid" data-id="{{$demand->id}}" name="paid" value="Pagado"> Pagado 
+                                        <input type="radio" class="paid paid1" data-id="{{$demand->id}}" name="paid" value="Por Pagar" checked> Por Pagar
+                                        <input type="radio" class="paid paid2" data-id="{{$demand->id}}" name="paid" value="Pagado"> Pagado 
                                     </form>
                                 </td>
                             </tr>

@@ -44,9 +44,9 @@ Route::group(['middleware' => 'auth'], function () {
 Route::group(['middleware' => 'role'], function () {
   Route::get('/edit/demands/{id}', 'EditDemandsController@edit');
   Route::post('/update/demands/{id}', 'EditDemandsController@update');
-  Route::post('/updatePaid/demands/{id}', 'EditDemandsController@updatePaid');
 });
-
+  Route::post('/updatePaid/demands/{id}', 'EditDemandsController@updatePaid');
+  Route::post('/upload/demand/{id}', 'UploadController@pdf');
 
   Route::get('/registers/list/index', 'ListController@list');
   Route::resource('accounts', 'AccountController');

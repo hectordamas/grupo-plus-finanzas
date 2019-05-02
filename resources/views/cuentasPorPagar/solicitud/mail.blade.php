@@ -22,6 +22,9 @@
             <th>Motivo</th>
             <th>Solicitado por:</th>
             <th>Estatus</th>
+            @if($demand->pdf)
+            <th>PDF</th>
+            @endif
         </thead>
         <tbody>
             <tr>
@@ -36,6 +39,9 @@
                 <td> {{$demand->reason}} </td>
                 <td> {{$demand->user->name}} </td>
                 <td> {{$demand->status}} </td>
+                @if($demand->pdf)
+                <td> <a href="{{ url($demand->pdf) }}" target="_blank">Ver PDF</a> </td>
+                @endif
             </tr>
         </tbody>
     </table>

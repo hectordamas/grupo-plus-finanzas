@@ -105,6 +105,31 @@ body{
   justify-content: center;
   align-items: center;
 }
+.beneficiary-container{
+  position: fixed;
+  width:100%;
+  height: 100%;
+  left:0;
+  top:0;
+  background:rgba(0,0,0, 0.7);
+  z-index:2000;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+.upload-container{
+  position: fixed;
+  width:100%;
+  height: 100%;
+  left:0;
+  top:0;
+  background:rgba(0,0,0, 0.7);
+  z-index:2000;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
 .processing-container{
   position: fixed;
   width:100%;
@@ -136,4 +161,7 @@ body{
       transform: rotate(1turn)
   }
 }
+
+
+
 

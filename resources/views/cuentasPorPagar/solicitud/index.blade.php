@@ -17,7 +17,7 @@
                         <thead class="table-dark">
                             <th>#</th>
                             <th>Dpto.</th>
-                            <th>Empresa</th>
+                            <th>Emp.</th>
                             <th>Fecha de Solicitud</th>
                             <th>Fecha de Pago</th>
                             <th>Beneficiario | Proveedor</th>
@@ -25,8 +25,9 @@
                             <th>Motivo</th>
                             <th>Monto</th>
                             <th>Status</th>
+                            <th>PDF</th>
                             @if(Auth::user()->role == 'Jefe')
-                                <th></th>
+                            <th></th>
                             @endif
                         </thead>
                         <tbody>
@@ -37,11 +38,18 @@
                                 <td> {{$demand->company->name}} </td>
                                 <td> {{ date_format(new DateTime($demand->currentDate), 'd/m/Y') }} </td>
                                 <td> {{ date_format(new DateTime($demand->payDate), 'd/m/Y') }} </td>
-                                <td> {{$demand->beneficiary->name}} </td>
+                                <td> <a href="#" data-id="{{$demand->beneficiary->id}}" class="beneficiary-modal">{{$demand->beneficiary->name}}</a> </td>
                                 <td> {{$demand->contable}}</td>
                                 <td> {{$demand->reason}} </td>
                                 <td> {{number_format($demand->amount, 2, '.', ',') }} {{$demand->coin}} </td>
                                 <td> {{$demand->status}} </td>
+                                <td>
+                                    @if($demand->pdf)
+                                    <a href="{{$demand->pdf}}" target="_blank">Ver</a>
+                                    @else
+                                    <a href="#" class="uploadBtn" data-id="{{$demand->id}}">Subir</a>
+                                    @endif
+                                </td>
                                 @if(Auth::user()->role == 'Jefe')
                                     <td><a href="/edit/demands/{{$demand->id}}">Revisar</a></td>
                                 @endif

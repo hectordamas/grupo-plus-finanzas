@@ -40,13 +40,13 @@
                   @else
                       <li class="nav-item">
                         <a class="nav-link" href="/bancos-nacionales">
-                          Bancos Nacionales
+                          Nacionales
                         </a>
                       </li>
 
                       <li class="nav-item">
                         <a class="nav-link" href="/bancos-internacionales">
-                          Bancos Internacionales
+                          Internacionales
                         </a>
                       </li>
 
@@ -70,7 +70,7 @@
 
                       <li class="nav-item">
                         <a class="nav-link" href="/usuarios-configuracion">
-                          Usuarios y Configuración
+                          Configuración
                         </a>
                       </li>
 
@@ -105,12 +105,16 @@
   @endisset
 
     @include('alert.processing')
+    @include('alert.upload')
     @include('alert.checked')
 
-@if(Request::url() != url('/forpay') && Request::url() != url('/demands'))
   @isset($demand)
-    @include('alert.modified')
+    @if(Request::url() == url('/forpay') || Request::url() == url('/demands'))
+      @include('alert.beneficiary.show')
+    @endif
+    @if(Request::url() == url('/edit/demands/'. $demand->id))
+      @include('alert.modified')
+    @endif
   @endisset
-@endif
   </body>
 </html>

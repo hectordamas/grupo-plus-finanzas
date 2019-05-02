@@ -30,6 +30,14 @@ class EditDemandsController extends Controller
         $demand = Demand::find($id);
         $demand->paid = $request->input('paid');
         $demand->save();
+        Mail::send('cuentasPorPagar.solicitud.paidMail', ['demand'=> $demand], function($message) use ($demand, $request){
+            $val = ($request->input('paid') == 'Pagado')? ', ha sido pagada': ', no ha sido Pagada';
+            $subject = 'La solicitud N° '. $demand->id .' realizada por '. Auth::user()->name . $val;
+            $email = 'grupoplus.imagen361@gmail.com';
+
+            $message->to($email, $subject);
+            $message->to($email)->subject($subject)->cc([Auth::user()->email, $demand->user->email,'freyerilabrador@gmail.com', 'ggabboc@hotmail.com']);
+        });
         return redirect()->back()->with('message', 'Modificado');
     }
 
@@ -44,7 +52,7 @@ class EditDemandsController extends Controller
             $email = 'grupoplus.imagen361@gmail.com';
 
             $message->to($email, $subject);
-            $message->to($email)->subject($subject)->cc([Auth::user()->email, $demand->user->email]);
+            $message->to($email)->subject($subject)->cc([Auth::user()->email, $demand->user->email, 'freyerilabrador@gmail.com', 'ggabboc@hotmail.com']);
         });
 
         return redirect('/cuentas-por-pagar')->with('message', 'Tu solicitud ha sido modificada de forma exitosa');
