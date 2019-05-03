@@ -19,7 +19,7 @@
             </div>
             <div class="col-md-3 form-group">
               <label for="amount">Monto</label>
-              <input type="number" name="amount" id="amount" class="form-control min-0" required>
+              <input type="number" name="amount" id="amount" class="form-control min-0" required step="any">
               <span><strong id="MontoFormateado"></strong></span>
             </div>
             <div class="col-md-3 form-group">

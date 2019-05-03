@@ -61,7 +61,7 @@
           </div>
           <div class="form-group col-md-3">
             <label for="montos"><strong>Buscar por Montos</strong></label>
-            <input type="number" id="monto" name="monto" class="form-control"/>
+            <input type="number" id="monto" name="monto" class="form-control" step="any"/>
             <span><strong id="montoFormateado"></strong></span>
           </div>
           <div class="form-group col-md-3">

@@ -63,7 +63,7 @@
                   <label for="Monto">
                     <strong>Monto</strong>
                   </label>
-                  <input id="Monto" type="number" class="form-control" name="Monto" min="0" required/>
+                  <input id="Monto" type="number" class="form-control" name="Monto" min="0" required step="any"/>
                   <span><strong id="MontoFormateado"></strong></span>
                 </div>
                 <div class="form-group col-md-3">
@@ -76,7 +76,7 @@
                   <label for="TASA">
                     <strong>Tasa</strong>
                   </label>
-                  <input id="TASA" type="number" class="form-control" name="TASA" min="0" required/>
+                  <input id="TASA" type="number" class="form-control" name="TASA" min="0" required step="any"/>
                   <span id="TASASpan"></span>
                 </div>
                 <div class="form-group col-md-3">
