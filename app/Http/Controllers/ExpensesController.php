@@ -7,6 +7,8 @@ use App\Register;
 use App\Bank;
 use App\Account;
 use App\Company;
+use App\Contable;
+
 class ExpensesController extends Controller
 {
 
@@ -15,7 +17,8 @@ class ExpensesController extends Controller
       $banks = Bank::where('type', 'Banco Internacional')->get();
       $companies = Company::all();
       $registers = Register::all();
-      return view('expenses.create', ['banks' => $banks,'companies' => $companies, 'registers' => $registers]);
+      $contables = Contable::all();
+      return view('expenses.create', ['banks' => $banks,'companies' => $companies, 'registers' => $registers, 'contables' => $contables]);
     }
 
 

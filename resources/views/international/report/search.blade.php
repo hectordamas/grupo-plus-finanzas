@@ -81,7 +81,7 @@
           <div class="row">
             <div class="form-group col-md-3">
               <label for="contable"><strong>Cuenta Contable</strong></label>
-              <select type="text" id="contable" name="contable" class="form-control">
+              <select type="text" id="contable" name="contable" class="form-control select2">
               <option value=""></option>
               @foreach($contables as $c)
                 <option value="{{$c->name}} - {{$c->description}}">{{$c->name}} - {{$c->description}}</option>
