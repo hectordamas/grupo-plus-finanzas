@@ -7,6 +7,8 @@ use App\Register;
 use App\Bank;
 use App\Account;
 use App\Company;
+use App\Contable;
+
 class EntriesController extends Controller
 {
     public function home(){
@@ -30,8 +32,9 @@ class EntriesController extends Controller
       $accounts = Account::all();
       $companies = Company::all();
       $registers = Register::all();
+      $contables = Contable::all();
 
-      return view('entries.create', ['accounts' => $accounts,'companies' => $companies, 'registers' => $registers]);
+      return view('entries.create', ['accounts' => $accounts,'companies' => $companies, 'registers' => $registers, 'contables' => $contables]);
     }
 
     public function store(Request $request){

@@ -51,8 +51,8 @@
               <label for="contableAccount">Cuenta Contable</label>
               <select name="contableAccount" id="contableAccount" class="form-control select2" required>
               <option value=""></option>
-              @foreach($registers->unique('contable') as $register)
-                <option value="{{$register->contable}}">{{$register->contable}}</option>
+              @foreach($contables as $c)
+                <option value="{{$c->name}} - {{$c->description}}">{{$c->name}} - {{$c->description}}</option>
               @endforeach
               </select>
             </div>

@@ -83,9 +83,9 @@
               <label for="contable"><strong>Cuenta Contable</strong></label>
               <select type="text" id="contable" name="contable" class="form-control">
               <option value=""></option>
-                @foreach($registers->unique('contable') as $register)
-                  <option value="{{$register->contable}}">{{$register->contable}}</option>
-                @endforeach
+              @foreach($contables as $c)
+                <option value="{{$c->name}} - {{$c->description}}">{{$c->name}} - {{$c->description}}</option>
+              @endforeach
               </select>
             </div>
             <div class="form-group col-md-3">

@@ -9,6 +9,8 @@ use App\Transaction;
 use App\Company;
 use App\Account;
 use App\Bank;
+use App\Contable;
+
 use Auth;
 
 class RegisterController extends Controller
@@ -29,11 +31,13 @@ class RegisterController extends Controller
       $companies = Company::all();
       $accounts = Account::all();
       $registers = Register::all();
+      $contables = Contable::all();
         return view('national.Register.create', [
           'banks' => $banks,
           'accounts' => $accounts,
           'companies' => $companies,
-          'registers' => $registers
+          'registers' => $registers,
+          'contables' => $contables,
         ]);
     }//endcreate
 

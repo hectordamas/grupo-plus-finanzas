@@ -7,6 +7,7 @@ use App\Company;
 use App\Account;
 use App\Register;
 use App\Exchange;
+use App\Contable;
 use DateTime;
 use App\Transaction;
 
@@ -17,11 +18,13 @@ class ReportController extends Controller
       $companies = Company::all();
       $accounts = Account::all();
       $registers = Register::all();
+      $contables = Contable::all();
       return view('Reportes.search', [
         'banks' => $banks,
         'companies' => $companies,
         'accounts' => $accounts,
-        'registers' => $registers
+        'registers' => $registers,
+        'contables' => $contables
       ]);
     }
 
@@ -87,11 +90,13 @@ class ReportController extends Controller
       $accounts = Account::all();
       $registers = Register::all();
       $transactions = Transaction::all();
+      $contables = Contable::all();
       return view('international.report.search',[
         'banks' => $banks,
         'companies' => $companies,
         'accounts' => $accounts,
-        'registers' => $registers
+        'registers' => $registers,
+        'contables' => $contables
       ]);
     }//internationaReport
 
