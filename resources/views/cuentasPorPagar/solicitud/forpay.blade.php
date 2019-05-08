@@ -1,9 +1,6 @@
 @extends('layouts.interface')
 @section('content')
 <div class="container-fluid" style="margin-top:30px;">
-  <div class="row">
-    <a href="/" style="color:white;"><i class="fas fa-arrow-left"></i> Volver Atrás</a>
-  </div>
 
   <div class="row">
       <div class="col-md-12">
@@ -14,7 +11,6 @@
             <div class="card-body">
                 <table class="table table-striped table-bordered" id="DataTable">
                         <thead class="table-dark">
-                            <th>#</th>
                             <th>Dpto.</th>
                             <th>Emp.</th>
                             <th>Fecha de Solicitud</th>
@@ -29,20 +25,21 @@
                         <tbody>
                         @foreach($demands as $demand)
                             <tr>
-                                <td> {{$demand->id}} </td>
                                 <td> {{$demand->departamento}} </td>
                                 <td> {{$demand->company->name}} </td>
                                 <td> {{ date_format(new DateTime($demand->currentDate), 'd/m/Y') }} </td>
                                 <td> {{ date_format(new DateTime($demand->payDate), 'd/m/Y') }} </td>
                                 <td> <a href="#" data-id="{{$demand->beneficiary->id}}" class="beneficiary-modal">{{$demand->beneficiary->name}}</a> </td>
-                                <td> {{$demand->contable}}</td>
-                                <td> {{$demand->reason}} </td>
+                                <td class="table-100"> {{$demand->contable}}</td>
+                                <td class="table-100"> {{$demand->reason}} </td>
                                 <td> {{number_format($demand->amount, 2, '.', ',') }} {{$demand->coin}} </td>
                                 <td>
                                     @if($demand->pdf)
                                     <a href="{{$demand->pdf}}" target="_blank">Ver</a>
                                     @else
-                                    <a href="#" class="uploadBtn" data-id="{{$demand->id}}">Subir</a>
+                                    <a href="#" class="uploadBtn btn btn-success" data-id="{{$demand->id}}">
+                                        <i class="fas fa-cloud-upload-alt" style="font-size:30px;"></i>
+                                    </a>
                                     @endif
                                 </td>
                                 <td> 
@@ -77,7 +74,7 @@
                 }
             }
         @endphp
-        <div class="col-md-4">
+        <div class="col-md-4 mb-3">
             <div class="card">
                 <div class="card-header">
                     Totales ({{$company->name}})

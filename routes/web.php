@@ -57,6 +57,24 @@ Route::group(['middleware' => 'role'], function () {
   Route::post('/report/national', 'ReportController@makeReport');
   Route::post('/report/international', 'ReportController@makeReportInternational');
   Route::post('/companyEntriesExpenses', 'ReportController@companyEntriesExpenses');
+
+  Route::get('/all/registers', 'RegistersModifyController@index');
+  Route::get('/all/registers/international', 'RegistersModifyController@indexInternational');
+  Route::get('/edit/register/{id}', 'RegistersModifyController@edit');
+  Route::get('/edit/register/international/{id}', 'RegistersModifyController@editInternational');
+  Route::post('/update/register/{id}', 'RegistersModifyController@update');
+  Route::post('/update/register/international/{id}', 'RegistersModifyController@updateInternational');
+
+  Route::get('/all/demands', 'DemandsModifyController@index');
+  Route::get('/edit/demand/{id}', 'DemandsModifyController@edit');
+  Route::post('/update/demand/{id}', 'DemandsModifyController@update');
+
+  Route::get('/all/users', 'RegistersModifyController@users');
+  Route::get('/edit/user/{id}', 'RegistersModifyController@edituser');
+  Route::post('/update/user/{id}', 'RegistersModifyController@updateuser');
+
+
+
 });
 
 Auth::routes();

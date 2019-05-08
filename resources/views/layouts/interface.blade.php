@@ -109,7 +109,7 @@
     @include('alert.checked')
 
   @isset($demand)
-    @if(Request::url() == url('/forpay') || Request::url() == url('/demands'))
+    @if(Request::url() == url('/forpay') || Request::url() == url('/demands') || Request::url() == url('/all/demands'))
       @include('alert.beneficiary.show')
     @endif
     @if(Request::url() == url('/edit/demands/'. $demand->id))

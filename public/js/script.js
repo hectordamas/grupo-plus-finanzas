@@ -592,8 +592,13 @@ $(document).ready(function(){
   }
 });
 
-$('#DataTable').DataTable();
-$('.DataTable').DataTable();
+$('#DataTable').DataTable({
+  paging: false,
+
+});
+$('.DataTable').DataTable({
+    paging: false,
+});
 
 $('.min-0').on('input', function(e){
   var val = $('.min-0').val();

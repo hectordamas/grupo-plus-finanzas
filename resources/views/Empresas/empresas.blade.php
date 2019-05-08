@@ -1,9 +1,7 @@
 @extends('layouts.interface')
 @section('content')
 <div class="container-fluid" style="margin-top:30px;">
-  <div class="row">
-    <a href="/" style="color:white;"><i class="fas fa-arrow-left"></i> Volver Atrás</a>
-  </div>
+
   <br>
   <div class="row">
     <div class="col-md-12">
@@ -13,7 +11,7 @@
         </div>
         <div class="card-body" style="padding:50px;">
           <div class="row">
-            <a href="/companies/create" class="btn btn-primary">Registrar una Empresa</a>
+            <a href="/companies/create" class="btn btn-primary">Registrar una Cuenta</a>
           </div>
           <br>
           <div class="row">

@@ -1,10 +1,6 @@
 @extends('layouts.interface')
 @section('content')
 <div class="container-fluid">
-  <div class="row mt-5">
-    <a href="/companies" style="color:white;"><i class="fas fa-arrow-left"></i> Volver Atrás</a>
-  </div>
-
   <br>
 
   <div class="row">

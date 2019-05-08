@@ -1,9 +1,7 @@
 @extends('layouts.interface')
 @section('content')
 <div class="container">
-  <div class="row mt-5">
-    <a href="/entries/home" style="color:white;"><i class="fas fa-arrow-left"></i> Volver Atrás</a>
-  </div>
+  <br>
   <div class="row">
     <div class="col-md-12">
       <form class="card" action="/entries/create" method="post">

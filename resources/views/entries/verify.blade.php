@@ -2,7 +2,6 @@
 @section('content')
 <div class="container">
   <div class="row mt-5">
-    <a href="javascript:history.back();" style="color:white;"><i class="fas fa-arrow-left"></i> Volver Atrás</a>
   </div>
   <div class="row justify-content-center">
     <div class="col-md-8">

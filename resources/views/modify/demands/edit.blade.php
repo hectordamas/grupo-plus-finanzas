@@ -1,7 +1,7 @@
 @extends('layouts.interface')
 @section('content')
+<br>
 <div class="container">
-    <br>
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
@@ -9,7 +9,7 @@
             </div>
             <div class="card-body">
 
-         <form action="/demands" method="POST" id="CrearSolicitud">
+         <form action="/update/demand/{{$demand->id}}" method="POST" id="CrearSolicitud">
              @csrf
             <div class="row">
                     <div class="col-md-4">
@@ -17,10 +17,10 @@
                             <label for="deparmento">
                                 Departamento
                             </label>
-                            <select required id="departamento" name="departamento" class="form-control select2">
-                                <option value=""></option>
-                                @foreach($demands->unique('departamento') as $demand)
+                            <select id="departamento" name="departamento" class="form-control select2">
                                 <option value="{{$demand->departamento}}">{{$demand->departamento}}</option>
+                                @foreach($demands->unique('departamento') as $d)
+                                <option value="{{$d->departamento}}">{{$d->departamento}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -31,6 +31,7 @@
                                 Empresa
                             </label>
                             <select id="empresa" name="empresa" class="form-control">
+                            <option value="{{$demand->company->id}}"> {{$demand->company->name}} </option>
                             @foreach($companies as $company)
                             <option value="{{$company->id}}"> {{$company->name}} </option>
                             @endforeach
@@ -41,13 +42,13 @@
                         <label for="currentDate">
                             Fecha de Solicitud
                         </label>
-                        <input type="date" name="currentDate" value="{{ date('Y-m-d') }}" id="currentDate" class="form-control">
+                        <input type="date" name="currentDate" value="{{ date_format(new DateTime($demand->currentDate),'Y-m-d') }}" id="currentDate" class="form-control">
                     </div>
                     <div class="col-md-4">
                         <label for="">
                             Fecha de Pago
                         </label>
-                        <input type="date" name="payDate" required id="payDate" class="form-control">
+                        <input type="date" value="{{ date_format(new DateTime($demand->payDate),'Y-m-d') }}" name="payDate" required id="payDate" class="form-control">
                     </div>
                     <div class="col-md-4">
                         <label for="beneficiary">
@@ -55,6 +56,7 @@
                         </label>
                         <div class="d-flex">
                             <select type="text" name="beneficiary" readonly id="beneficiary" class="form-control mr-2">
+                                <option value="{{$demand->beneficiary->id}}">{{$demand->beneficiary->name}}</option>
                             </select>
                             <a href="#" class="btn btn-success rounded-0" id="Directory">Directorio</a>
                         </div>
@@ -63,8 +65,8 @@
                         <label for="contable">
                             Cuenta Contable
                         </label>
-                        <select required class="contable form-control select2" name="contable" value="" id="contable">
-                        <option value=""></option>
+                        <select class="contable form-control select2" name="contable" value="" id="contable">
+                        <option value="{{$demand->contable}}">{{$demand->contable}}</option>
                         @foreach($contables as $contable)
                             <option value="{{$contable->name}} - {{$contable->description}}">{{$contable->name}} - {{$contable->description}}</option>
                         @endforeach
@@ -74,10 +76,10 @@
                         <label for="reason">
                             Motivo
                         </label>
-                        <select required class="reason form-control select2" name="reason" value="" id="reason">
-                        <option value=""></option>
-                        @foreach($demands->unique('reason') as $demand)
-                            <option value="{{$demand->reason}}">{{$demand->reason}}</option>
+                        <select class="reason form-control select2" name="reason" id="reason">
+                        <option value="{{$demand->reason}}">{{$demand->reason}}</option>
+                        @foreach($demands->unique('reason') as $d)
+                            <option value="{{$d->reason}}">{{$d->reason}}</option>
                         @endforeach
                         </select>
                     </div>
@@ -85,16 +87,21 @@
                         <label for="amount">
                             Monto
                         </label>
-                        <input step="any" type="number" class="form-control" required oninput="formatDemandAmount(this.value)" name="amount" id="amount"/>
-                        <strong id="demandAmount"></strong>
+                        <input step="any" value="{{$demand->amount}}" type="number" class="form-control" required oninput="formatDemandAmount(this.value)" name="amount" id="amount"/>
+                        <strong id="demandAmount">{{number_format($demand->amount, 2, '.', ',')}}</strong>
                     </div>
                     <div class="col-md-4">
                         <label for="coin">
                             Moneda
                         </label>
                         <select name="coin" id="coin" class="form-control">
+                            @if($demand->coin == 'Bs.S')
                             <option value="Bs.S">Bs.S</option>
+                            <option value="USD">USD</option>             
+                            @else
                             <option value="USD">USD</option>
+                            <option value="Bs.S">Bs.S</option>
+                            @endif
                         </select>
                     </div>
 

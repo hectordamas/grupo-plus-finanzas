@@ -1,10 +1,7 @@
 @extends('layouts.interface')
 @section('content')
 <div class="container-fluid">
-    <br>
-    <div class="row">
-        <a href="/cuentas-por-pagar" style="color:white;"><i class="fas fa-arrow-left"></i> Volver Atrás</a>
-    </div>
+
     <br>
     <div class="row">
         <div class="col-md-12">
@@ -78,7 +75,7 @@
                 }
             }
         @endphp
-        <div class="col-md-4">
+        <div class="col-md-4 mb-3">
             <div class="card">
                 <div class="card-header">
                     Totales ({{$company->name}})

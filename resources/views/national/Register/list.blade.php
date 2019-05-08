@@ -2,7 +2,6 @@
 @section('content')
 <div class="container-fluid" style="margin-top:30px;">
   <div class="row">
-    <a href="/" style="color:white;"><i class="fas fa-arrow-left"></i> Volver Atrás</a>
   </div>
 
   <div class="row">

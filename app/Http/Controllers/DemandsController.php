@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Company;
 use App\Demand;
 use App\Beneficiary;
+use App\Contable;
+
 use Auth;
 use Mail;
 
@@ -36,10 +38,12 @@ class DemandsController extends Controller
         $companies = Company::all();
         $demands = Demand::all();
         $beneficiaries = Beneficiary::all();
+        $contables = Contable::all();
         return view('cuentasPorPagar.solicitud.create', [
             'companies' => $companies,
             'beneficiaries' => $beneficiaries,
             'demands' => $demands,
+            'contables' => $contables
         ]);
     }
 

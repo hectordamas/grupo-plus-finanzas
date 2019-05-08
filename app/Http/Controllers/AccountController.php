@@ -91,7 +91,7 @@ class AccountController extends Controller
         $bank->save();
         $company->save();
         $account->save();
-        return redirect()->back()->with('message', 'La Empresa ha sido registrada correctamente');
+        return redirect('/companies')->with('message', 'La Cuenta ha sido actualizada correctamente');
     }
 
     /**

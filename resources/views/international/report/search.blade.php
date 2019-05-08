@@ -2,9 +2,7 @@
 @section('content')
 <div class="container" style="margin-top:30px;">
 
-  <div class="row">
-    <a href="/bancos-internacionales" style="color:white;"><i class="fas fa-arrow-left"></i> Volver Atrás</a>
-  </div>
+ 
 
   <div class="row">
     <div class="col-md-12">

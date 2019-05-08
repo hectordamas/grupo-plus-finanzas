@@ -2,9 +2,6 @@
 @section('content')
 <div class="container-fluid" style="margin-top:30px;">
 
-  <div class="row">
-    <a href="/bancos-internacionales" style="color:white;"><i class="fas fa-arrow-left"></i> Volver Atrás</a>
-  </div>
 
   <div class="row d-flex justify-content-center">
    @foreach($companies as $company)
@@ -59,15 +56,14 @@
         <table style="width:100%;" class="table table-bordered table-striped">
           <thead class="table-dark">
             <tr>
-              <th colspan="5" class="text-center">
+              <th colspan="4" class="text-center">
                 Consolidado
               </th>
             </tr>
             <tr>
               <th>Bancos:</th>
               <th>Disponible:</th>
-              <th>Diferido:</th>
-              <th>Girado:</th>
+              <th>No Disponible:</th>
               <th>Total Disponible:</th>
             </tr>
           </thead>
@@ -75,35 +71,29 @@
             @php
               $totalavailable = 0;
               $totalnotavailable = 0;
-              $totaltransit = 0;
               $totalavailableavailable = 0;
-              $entry = 0;
-              $expense = 0;
-              $transit = 0;
-              $notavailable = 0;
             @endphp
 
             @foreach($banks as $bank)
               @if($bank->type == 'Banco Internacional')
                 @php
+                  $entry = 0;
+                  $expense = 0;
+                  $notavailable = 0;
                     foreach($bank->accounts as $account){
                       $entry = $entry + $account->entry;
                       $expense = $expense + $account->expense;
-                      $transit = $transit + $account->transit;
                       $notavailable = $notavailable + $account->notavailable;
-
-                      $totalavailable = $totalavailable + ($account->entry - $account->expense);
-                      $totalnotavailable = $totalnotavailable + $account->notavailable;
-                      $totaltransit = $totaltransit + $account->transit;
-                      $totalavailableavailable = $totalavailableavailable + (($account->entry - $account->expense) - $account->transit);
+                      $totalavailableavailable = $totalavailableavailable + (($entry - $expense) - $notavailable); 
                     }
+                      $totalnotavailable = $totalnotavailable + $notavailable;
+                      $totalavailable = $totalavailable + ($entry - $expense);
                   @endphp
               <tr>
                 <td>{{$bank->name}}</td>
                 <td>{{  number_format($entry - $expense,2,'.', ',') }} USD</td>
                 <td>{{  number_format($notavailable,2,'.',',') }} USD</td>
-                <td>{{  number_format($transit,2,'.',',') }} USD</td>
-                <td>{{  number_format(($entry - $expense) - $transit,2,'.',',') }} USD</td>
+                <td>{{  number_format(($entry - $expense) - $notavailable,2,'.',',') }} USD</td>
               </tr>
               @endif
             @endforeach
@@ -111,7 +101,6 @@
               <td><strong>Total</strong></td>
               <td><strong>{{ number_format($totalavailable,2,'.', ',') }} USD</strong></td>
               <td><strong>{{ number_format($totalnotavailable,2,'.',',') }} USD</strong></td>
-              <td><strong>{{ number_format($totaltransit,2,'.',',') }} USD</strong></td>
               <td><strong>{{ number_format($totalavailableavailable,2,'.',',') }} USD</strong></td>
             </tr>
           </tbody>

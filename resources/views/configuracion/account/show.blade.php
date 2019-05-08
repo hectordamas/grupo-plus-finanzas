@@ -38,12 +38,6 @@
                </div>
              </div>
 
-             <div class="row">
-               <div class="form-group col">
-                 <a href="#" id="Agregar" class="btn btn-primary">Agregar</a>
-               </div>
-             </div>
-
              <div class="row" id="hiddenBankFromCompany">
                <div class="form-group col-md-4">
                  <label for="accountNumber"><strong>Número de Cuenta</strong></label>
@@ -65,7 +59,7 @@
 
              <div class="row">
                <div class="form-group col">
-                 <input type="submit" value="Registrar Empresa" class="btn btn-primary">
+                 <input type="submit" value="Registrar Cuenta" class="btn btn-primary">
                </div>
              </div>
           </form>

@@ -1,15 +1,13 @@
 @extends('layouts.interface')
 @section('content')
 <div class="container">
-  <div class="row mt-5">
-    <a href="/usuarios-configuracion" style="color:white;"><i class="fas fa-arrow-left"></i> Volver Atrás</a>
-  </div>
 
+<br><br>
   <div class="row">
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">
-          Registrar Cuentas de Empresas
+          Registrar Cuentas | Empresas | Bancos
         </div>
         <div class="card-body">
           <form id="Empresas" action="/companies" method="post">
@@ -66,7 +64,7 @@
 
              <div class="row">
                <div class="form-group col">
-                 <input type="submit" value="Registrar Empresa" class="btn btn-primary">
+                 <input type="submit" value="Registrar Cuenta" class="btn btn-primary">
                </div>
              </div>
           </form>

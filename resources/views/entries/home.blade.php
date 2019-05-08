@@ -3,7 +3,6 @@
 <div class="container">
 
   <div class="row mt-5">
-    <a href="/bancos-internacionales" style="color:white;"><i class="fas fa-arrow-left"></i> Volver Atrás</a>
   </div>
 
   <div class="row">

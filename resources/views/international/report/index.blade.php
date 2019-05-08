@@ -2,7 +2,6 @@
 @section('content')
 <div class="container-fluid">
   <div class="row mt-5">
-    <a href="/reportes/internacionales" style="color:white;"><i class="fas fa-arrow-left"></i> Volver Atrás</a>
   </div>
 
     <div class="card">
@@ -18,6 +17,7 @@
             <th>Banco</th>
             <th>USD</th>
             <th>Responsable</th>
+            <th>Beneficiario</th>
             <th>Tipo</th>
             <th>Status</th>
             <th>Cta. Contable</th>
@@ -38,6 +38,7 @@
                 <td>- {{number_format($register->amount,2, ',', '.')}} USD</td>
                 @endif
                 <td>{{$register->responsable}}</td>
+                <td>{{$register->beneficiary}}</td>
                 <td>{{$register->type}}</td>
                 <td>{{$register->status}}</td>
                 <td>{{$register->contable}}</td>
