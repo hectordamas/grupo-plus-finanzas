@@ -15,6 +15,9 @@
               <tr>
                 <th>ID</th>
                 <th>Fecha</th>
+                <th>Banco</th>
+                <th>Beneficiario</th>
+                <th>Observaciones</th>
                 <th>Monto</th>
                 <th>Motivo</th>
                 <th>Estatus</th>
@@ -28,6 +31,9 @@
                 <tr>
                   <td> {{$register->id}} </td>
                   <td>{{ date_format(new Datetime($register->date), 'd/m/Y') }}</td>
+                  <td>{{$register->account->bank->name}}</td>
+                  <td>{{$register->beneficiary}}</td>
+                  <td>{{$register->description}}</td>
                   <td>{{ number_format($register->amount,2,'.', ',') }} USD</td>
                   <td>{{ $register->reason}}</td>
                   <td>{{ $register->status }}</td>

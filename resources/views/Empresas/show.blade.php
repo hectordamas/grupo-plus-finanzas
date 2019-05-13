@@ -22,10 +22,10 @@
             <tbody>
               @foreach($company->accounts as $account)
               <tr>
-                <td><a href="/accounts/{{$company->id}}">{{$account->bank->name}}</a></td>
+                <td><a href="/accounts/{{$account->id}}">{{$account->bank->name}}</a></td>
                 <td>{{$account->number}}</td>
                 <td>{{$account->bank->type}}</td>
-                <td><a href="/accounts/{{$company->id}}">Modificar</a></td>
+                <td><a href="/accounts/{{$account->id}}">Modificar</a></td>
               </tr>
               @endforeach
             </tbody>

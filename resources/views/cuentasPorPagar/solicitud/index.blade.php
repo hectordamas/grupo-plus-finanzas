@@ -44,7 +44,9 @@
                                     @if($demand->pdf)
                                     <a href="{{$demand->pdf}}" target="_blank">Ver</a>
                                     @else
-                                    <a href="#" class="uploadBtn" data-id="{{$demand->id}}">Subir</a>
+                                    <a href="#" class="uploadBtn btn btn-success" data-id="{{$demand->id}}">
+                                        <i class="fas fa-cloud-upload-alt" style="font-size:30px;"></i>
+                                    </a>
                                     @endif
                                 </td>
                                 @if(Auth::user()->role == 'Jefe')

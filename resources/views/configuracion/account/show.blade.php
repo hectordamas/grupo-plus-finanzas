@@ -11,7 +11,7 @@
           Editar Cuentas | Empresas | Bancos
         </div>
         <div class="card-body">
-          <form action="/accounts/{{$account->id}}" method="post">
+          <form action="/accounts/{{$account->id}}" method="post" enctype="multipart/form-data">
             @method('PATCH')
             @csrf
             <input type="hidden" name="company_id" value="{{$account->company->id}}">
@@ -32,10 +32,17 @@
              </div>
 
              <div class="row">
-               <div class="form-group col">
+               <div class="form-group col-md-6">
                  <label for="address"><strong>Dirección Fiscal</strong></label>
                  <input type="text" name="address" id="address" class="form-control" value="{{$account->company->address}}">
                </div>
+              <div class="form-group col-md-6">
+              <label for="customFile"><strong>Logo:</strong></label>
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" id="customFile" name="image"/>
+                  <label class="custom-file-label" for="customFile">Elige una Imagen</label>
+               </div>
+              </div>
              </div>
 
              <div class="row" id="hiddenBankFromCompany">

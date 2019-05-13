@@ -21,8 +21,8 @@
                             <th>Motivo</th>
                             <th>Estatus</th>
                             <th>Última Modificación</th>
+                            <th>Modificado Por</th>
                             <th>Modificar</th>
-                            <th>Eliminar</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -47,19 +47,11 @@
                                 <td>
                                     {{date_format($register->updated_at, 'd/m/Y')}}
                                 </td>
+                                <td>{{ $register->modify_by }}</td>
                                 <td class="d-flex justify-content-center"> 
                                     <a href="/edit/register/international/{{$register->id}}" class="btn btn-success">
                                         <i class="fas fa-pen"></i>
                                     </a>
-                                </td>
-                                <td>
-                                  <form action="/registers/{{$register->id}}" class="d-flex justify-content-center" method="post">
-                                  @csrf
-                                  @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">
-                                        <i class="far fa-times-circle"></i>
-                                    </button>
-                                  </form>
                                 </td>
                             </tr>
                             @endif

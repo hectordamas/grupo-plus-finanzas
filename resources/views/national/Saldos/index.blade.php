@@ -3,63 +3,56 @@
 <div class="container-fluid">
   <div class="row mt-5">
   </div>
-  <div class="row">
-    <div class="col-md-12">
-      <div class="card">
-        <div class="card-body">
-          <table class="table table-bordered" id="DataTable">
-              <thead class="table-dark">
-                <tr>
-                  <th colspan="4" class="text-center">
-                    Saldos | Bancos Nacionales
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
 
-                @foreach($companies as $company)
-                  <tr>
-                    <td colspan="4" style="text-align:center;">
-                      <strong>{{$company->name}}<strong>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><strong>Bancos:</strong></td>
-                    <td><strong>Ingresos:</strong></td>
-                    <td><strong>Egresos:</strong></td>
-                    <td><strong>Disponible:</strong></td>
-                  </tr>
-                  @php
-                    $totalIngreso = 0;
-                    $totalEgreso = 0;
-                  @endphp
-                  @foreach($company->accounts as $account)
-                  @if($account->bank->type == 'Banco Nacional')
-                    @php
-                      $totalIngreso = $totalIngreso + $account->entry;
-                      $totalEgreso = $totalEgreso + $account->expense;
-                    @endphp
-                  <tr>
-                    <td>{{$account->bank->name}}</td>
-                    <td>{{number_format($account->entry, 2, ',', '.')}} Bs.S</td>
-                    <td>{{number_format($account->expense, 2, ',', '.')}} Bs.S</td>
-                    <td>{{number_format($account->entry - $account->expense, 2, ',', '.')}} Bs.S</td>
-                  </tr>
-                  @endif
-                  @endforeach
-                  <tr>
-                    <td><strong>Total En General:</strong></td>
-                    <td><strong>{{number_format($totalIngreso, 2, ',', '.')}} Bs.S</strong></td>
-                    <td><strong>{{number_format($totalEgreso, 2, ',', '.')}} Bs.S</strong></td>
-                    <td><strong>{{number_format($totalIngreso - $totalEgreso, 2, ',', '.')}} Bs.S</strong></td>
-                  </tr>
-                @endforeach
-              </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
 
+  <div class="row d-flex justify-content-center">
+   @foreach($companies as $company)
+   <div class="card mr-1 mb-2" style="width:30rem;">
+     <div class="card-body d-flex justify-content-center">
+       <table class="table table-bordered table-striped" style="width:100%;">
+         <thead>
+          <th colspan="3" class="text-center table-dark">
+              @if($company->image)
+              <img src="{{ $company->image }}" alt="{{ $company->name }}" width="80px">
+              @else
+              {{$company->abbreviation}}
+              @endif
+            </th>
+         </thead>
+         <tbody>
+           <tr>
+             <td>Bancos:</td>
+             <td>Disponible:</td>
+             <td>No Disponible:</td>
+           </tr>
+           @php
+            $totalCompany = 0;
+            $totalNotAvailableCompany = 0;
+           @endphp
+
+          @foreach($company->accounts as $account)
+            @if($account->bank->type == "Banco Nacional")
+              @php
+                $totalCompany = $totalCompany + ($account->entry - $account->expense);
+                $totalNotAvailableCompany = $totalNotAvailableCompany + $account->notavailable;
+              @endphp
+              <tr>
+                <td>{{ $account->bank->name }}</td>
+                <td>{{ number_format($account->entry - $account->expense,2,'.', ',')}} Bs.S</td>
+                <td>{{ number_format($account->notavailable,2,'.', ',')}} Bs.S</td>
+              </tr>
+            @endif
+          @endforeach
+            <tr>
+              <td> <strong>Totales:</strong></td>
+              <td><strong>{{ number_format($totalCompany,2,'.', ',')}} Bs.S</strong></td>
+              <td><strong>{{ number_format($totalNotAvailableCompany,2,'.', ',')}} Bs.S</strong></td>
+            </tr>
+         </tbody>
+       </table>
+     </div>
+   </div>
+  @endforeach
   </div>
 </div>
 @endsection

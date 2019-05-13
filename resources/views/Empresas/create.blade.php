@@ -10,7 +10,7 @@
           Registrar Cuentas | Empresas | Bancos
         </div>
         <div class="card-body">
-          <form id="Empresas" action="/companies" method="post">
+          <form id="Empresas" action="/companies" method="post" enctype="multipart/form-data">
             @csrf
              <div class="row">
                <div class="form-group col-md-4">
@@ -32,10 +32,19 @@
              </div>
 
              <div class="row">
-               <div class="form-group col-md-12">
+               <div class="form-group col-md-6">
                  <label for="address"><strong>Dirección Fiscal</strong></label>
                  <input name="address" id="address" class="form-control" required />
                </div>
+
+              <div class="form-group col-md-6">
+              <label for="customFile"><strong>Logo:</strong></label>
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" id="customFile" name="image"/>
+                  <label class="custom-file-label" for="customFile">Elige una Imagen</label>
+               </div>
+              </div>
+
              </div>
 
              <div class="row" id="hiddenBankFromCompany">

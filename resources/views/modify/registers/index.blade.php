@@ -23,7 +23,6 @@
                             <th>Última Modificación</th>
                             <th>Modificado Por:</th>
                             <th>Modificar</th>
-                            <th>Eliminar</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -55,15 +54,6 @@
                                     <a href="/edit/register/{{$register->id}}" class="btn btn-success">
                                         <i class="fas fa-pen"></i>
                                     </a>
-                                </td>
-                                <td>
-                                  <form action="/registers/{{$register->id}}" class="d-flex justify-content-center" method="post">
-                                  @csrf
-                                  @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">
-                                        <i class="far fa-times-circle"></i>
-                                    </button>
-                                  </form>
                                 </td>
                             </tr>
                             @endif

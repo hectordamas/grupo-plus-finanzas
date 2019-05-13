@@ -81,12 +81,23 @@ class AccountController extends Controller
     {   $bank = Bank::find($request->input('bank_id'));
         $company = Company::find($request->input('company_id'));
         $account = Account::find($id);
+
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $name = time().$file->getClientOriginalName();
+            $file->move(public_path().'/images/', $name);
+            $fileName = "/images/".$name;
+          }else{
+            $fileName = $company->image;
+          }
+
         $bank->name = $request->input('bankName');
         $bank->type = $request->input('typeBank');
         $company->name = $request->input('name');
         $company->abbreviation = $request->input('abreviatura');
         $company->rif = $request->input('rif');
         $company->address = $request->input('address');
+        $company->image = $fileName;
         $account->number = $request->input('accountNumber');
         $bank->save();
         $company->save();

@@ -5,11 +5,17 @@
 
   <div class="row d-flex justify-content-center">
    @foreach($companies as $company)
-   <div class="card" style="width:30rem;">
+   <div class="card mr-1 mb-2" style="width:30rem;">
      <div class="card-body d-flex justify-content-center">
        <table class="table table-bordered table-striped" style="width:100%;">
          <thead>
-             <th colspan="3" class="text-center table-dark">{{ $company->abbreviation }}</th>
+             <th colspan="3" class="text-center table-dark">
+             @if($company->image)
+              <img src="{{ $company->image }}" alt="{{ $company->name }}" width="80px">
+              @else
+              {{$company->abbreviation}}
+              @endif
+              </th>
          </thead>
          <tbody>
            <tr>

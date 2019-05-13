@@ -36,11 +36,20 @@ class CompanyController extends Controller
           ]);//endbank::create
         }//endelse
         $company = Company::where('name', $request->input('name'))->first();
+        if ($request->hasFile('image')) {
+          $file = $request->file('image');
+          $name = time().$file->getClientOriginalName();
+          $file->move(public_path().'/images/', $name);
+          $fileName = "/images/".$name;
+        }else{
+          $fileName = '';
+        }
         if($company){
           $company->name = $request->input('name');
           $company->abbreviation = $request->input('abreviatura');
           $company->rif = $request->input('rif');
           $company->address = $request->input('address');
+          $company->image = $fileName;
           $company->save();
         }else{
           $company = Company::create([
@@ -48,6 +57,7 @@ class CompanyController extends Controller
             'abbreviation' => $request->input('abreviatura'),
             'rif' => $request->input('rif'),
             'address' => $request->input('address'),
+            'image' => $fileName,
           ]);//endcompany::create
         }//endelse
         $account = Account::create([
