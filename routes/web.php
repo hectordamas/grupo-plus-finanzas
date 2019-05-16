@@ -74,6 +74,16 @@ Route::group(['middleware' => 'role'], function () {
   Route::post('/update/user/{id}', 'RegistersModifyController@updateuser');
 
 
+  Route::get('/facturacion-y-cobranza', function(){
+    return view('facturacionYCobranza.index');
+  });
+  Route::get('/grupoplus', function(){
+     return view('facturacionYCobranza.grupoplus.index');
+  });
+  Route::get('/tiendagf', function(){
+    return view('facturacionYCobranza.tiendagf.index');
+ });
+  Route::resource('bills', 'BillsController');
 
 });
 

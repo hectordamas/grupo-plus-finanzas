@@ -66,7 +66,7 @@
 
                <div class="form-group col-md-4">
                  <label for="accountNumber"><strong>Número de Cuenta</strong></label>
-                 <input type="number" name="accountNumber" required id="accountNumber" class="form-control" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                 <input type="number" name="number" required id="accountNumber" class="form-control" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
                </div>
                
              </div>

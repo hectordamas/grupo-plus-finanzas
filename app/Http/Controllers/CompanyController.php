@@ -5,6 +5,7 @@ use App\Company;
 use App\Bank;
 use App\Account;
 use Illuminate\Http\Request;
+use App\Http\Requests\CompanyRequest;
 
 class CompanyController extends Controller
 {
@@ -61,11 +62,13 @@ class CompanyController extends Controller
           ]);//endcompany::create
         }//endelse
         $account = Account::create([
-          'number' => $request->input('accountNumber'),
+          'number' => $request->input('number'),
           'bank_id' => $bank->id,
           'company_id' => $company->id,
         ]);
-      return redirect('/companies')->with('message', 'La Empresa ha sido registrada correctamente');
+      return redirect('/companies', [
+        'account' => $account
+      ])->with('message', 'La Empresa ha sido registrada correctamente');
     }//endstore
 
     public function search(Request $request){

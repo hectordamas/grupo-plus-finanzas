@@ -48,7 +48,12 @@
              <div class="row" id="hiddenBankFromCompany">
                <div class="form-group col-md-4">
                  <label for="accountNumber"><strong>Número de Cuenta</strong></label>
-                 <input type="number" name="accountNumber" id="accountNumber" class="form-control" value="{{$account->number}}"/>
+                 <input type="number" name="number" id="accountNumber" class="form-control" value="{{$account->number}}"/>
+                @foreach ($errors->get('number') as $message)
+                  <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+                @endforeach
                </div>
                <div class="form-group col">
                  <label for="typeBank"><strong>Tipo de Banco</strong></label>
