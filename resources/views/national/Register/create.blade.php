@@ -15,6 +15,7 @@
         <div class="FormIngresoYEgreso">
           <form method="post" action="/registers">
             @csrf
+            <input type="hidden" id="demand_id" name="demand_id">
             <div class="row">
               <div class="form-group col-md-3">
                 <label for="fecha">

@@ -10,6 +10,7 @@ use App\Company;
 use App\Account;
 use App\Bank;
 use App\Contable;
+use App\Demand;
 
 use Auth;
 
@@ -32,12 +33,14 @@ class RegisterController extends Controller
       $accounts = Account::all();
       $registers = Register::all();
       $contables = Contable::all();
+      $demands = Demand::where('status', 'Aprobado')->where('paid', 'Por Pagar')->where('coin', 'Bs.S')->get();
         return view('national.Register.create', [
           'banks' => $banks,
           'accounts' => $accounts,
           'companies' => $companies,
           'registers' => $registers,
           'contables' => $contables,
+          'demands' => $demands
         ]);
     }//endcreate
 
@@ -108,6 +111,11 @@ class RegisterController extends Controller
             }
       }//endif
       $account->save();
+      if($request->input('demand_id')){
+        $demand = Demand::find($request->input('demand_id'));
+        $demand->paid = 'Pagado';
+        $demand->save();
+      }
       return redirect('/bancos-nacionales')->with('message', 'El registro se ha guardado correctamente!');
     }//endstore
 

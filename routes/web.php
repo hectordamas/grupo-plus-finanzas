@@ -72,8 +72,6 @@ Route::group(['middleware' => 'role'], function () {
   Route::get('/all/users', 'RegistersModifyController@users');
   Route::get('/edit/user/{id}', 'RegistersModifyController@edituser');
   Route::post('/update/user/{id}', 'RegistersModifyController@updateuser');
-
-
   Route::get('/facturacion-y-cobranza', function(){
     return view('facturacionYCobranza.index');
   });
@@ -84,7 +82,12 @@ Route::group(['middleware' => 'role'], function () {
     return view('facturacionYCobranza.tiendagf.index');
  });
   Route::resource('bills', 'BillsController');
-
+  Route::get('/getDemand/{id}', 'PayController@show');
+  Route::resource('ebills', 'EbillsController');
+  Route::get('/balances/bills', 'SaldosController@balances');
+  Route::post('/searchClient', 'BillingScriptController@client');
+  Route::get('/report/bill', 'BillingScriptController@report');
+  Route::post('/search/bill', 'BillingScriptController@search');
 });
 
 Auth::routes();

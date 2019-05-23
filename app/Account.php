@@ -8,6 +8,7 @@ use App\Company;
 use App\Exchange;
 use App\Transaction;
 use App\Bank;
+use App\Ebill;
 
 class Account extends Model
 {
@@ -24,5 +25,9 @@ class Account extends Model
   }
   public function company(){
     return $this->belongsTo(Company::class);
+  }
+
+  public function ebills(){
+    return $this->hasMany(Ebill::class);
   }
 }

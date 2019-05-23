@@ -7,6 +7,8 @@ use App\Bank;
 use App\Account;
 use App\Register;
 use App\Demand;
+use App\Bill;
+
 
 class Company extends Model
 {
@@ -18,5 +20,8 @@ class Company extends Model
 
   public function demands(){
     return $this->hasMany(Demand::class);
+  }
+  public function bills(){
+    return $this->hasMany(Bill::class);
   }
 }

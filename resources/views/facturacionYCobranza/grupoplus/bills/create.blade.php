@@ -8,23 +8,27 @@
                     Facturación
                 </div>
                 <div class="card-body">
-                    <form action="/bills/create" method="post">
+                    <form action="/bills" method="post">
                         @csrf
                         <div class="row">
                             <div class="form-group col-md-3">
                                 <label for="type">
                                     Tipo de Documento
                                 </label>
-                                <input type="text" id="type" name="type" class="form-control"/>
+                                <select id="type" name="type" class="form-control">
+                                    <option value="N.E">N.E.</option>
+                                    <option value="FAC">FAC</option>
+
+                                </select>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="client">
                                     Cliente
                                 </label>
-                                <select id="name" name="name" class="form-control select2" required>
+                                <select id="client" name="name" class="form-control select2" required>
                                 <option value=""></option>
-                                @foreach($bills as $bill)
-                                <option value="{{$bill->client}}">{{$bill->client}}</option>
+                                @foreach($clients as $c)
+                                <option value="{{$c->name}}">{{$c->name}}</option>
                                 @endforeach
                                 </select>
                             </div>
@@ -32,27 +36,40 @@
                                 <label for="date">
                                  Fecha
                                 </label>
-                                <input type="date" id="date" name="date" class="form-control"/>
+                                <input type="date" id="date" name="date" class="form-control" value="{{ date('Y-m-d') }}"/>
                             </div>
                             <div class="col-md-3">
                                 <label for="amount">
                                     Monto
                                 </label>
-                                <input type="number" step="any" class="form-control" id="amount" name="amount"/>
+                                <input type="number" step="any" class="form-control" id="amountBill" name="amount"/>
+                                <strong id="amountStrong"></strong>
                             </div>
                         </div>
                         <div class="row">
+                        <div class="form-group col-md-3">
+                                <label for="rate">
+                                 Tasa
+                                </label>
+                                <input type="number" id="rateBill" name="rate" step="any" class="form-control"/>
+                                <strong id="rateStrong"></strong>
+                            </div>
                             <div class="form-group col-md-3">
                                 <label for="number">
                                  Número
                                 </label>
-                                <input type="string" id="number" name="number" class="form-control"/>
+                                <input type="text" id="number" name="number" class="form-control"/>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="seller">
                                  Vendedor
                                 </label>
-                                <input type="text" id="seller" name="seller" class="form-control"/>
+                                <select id="seller" name="seller" class="form-control select2" required>
+                                    <option value=""></option>
+                                    @foreach($sellers as $seller)
+                                    <option value="{{$seller->name}}">{{$seller->name}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="company">

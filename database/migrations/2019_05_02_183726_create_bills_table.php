@@ -18,12 +18,15 @@ class CreateBillsTable extends Migration
             $table->timestamps();
             $table->string('type');
             $table->float('amount', 100, 2);
-            $table->string('client');
             $table->string('date');
+            $table->float('rate', 100, 2);
             $table->integer('company_id')->unsigned();
-            $table->foreign('company_id')->references('id')->on('users');
+            $table->foreign('company_id')->references('id')->on('companies');
+            $table->integer('client_id')->unsigned();
+            $table->foreign('client_id')->references('id')->on('clients');
+            $table->integer('seller_id')->unsigned();
+            $table->foreign('seller_id')->references('id')->on('sellers');
             $table->string('number');
-            $table->string('seller');
         });
     }
 

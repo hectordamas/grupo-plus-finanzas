@@ -17,7 +17,7 @@
     </a>
 
 
-    <a href="/tiendagf" class="background">
+    <a href="/ebills/create" class="background">
         <div class="row">
           <div class="col-md-12 text-center">
           <i class="fas fa-file-invoice" style="font-size:50px; color:white;"></i>
@@ -25,7 +25,33 @@
         </div>
         <div class="row">
           <div class="col-md-12">
-            <h2 class="text-center" style="color:white;">Ingreso de Pago</h2>
+            <h2 class="text-center" style="color:white;">Ingresos de Pago</h2>
+          </div>
+        </div>
+    </a>
+
+    <a href="/balances/bills" class="panel">
+        <div class="row">
+          <div class="col-md-12 text-center">
+          <i class="fas fa-file-invoice" style="font-size:50px; color:white;"></i>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <h2 class="text-center" style="color:white;">Saldos</h2>
+          </div>
+        </div>
+    </a>
+
+    <a href="/report/bill" class="background">
+        <div class="row">
+          <div class="col-md-12 text-center">
+          <i class="fas fa-file-invoice" style="font-size:50px; color:white;"></i>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <h2 class="text-center" style="color:white;">Reportes</h2>
           </div>
         </div>
     </a>

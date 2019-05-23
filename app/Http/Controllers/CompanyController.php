@@ -5,7 +5,6 @@ use App\Company;
 use App\Bank;
 use App\Account;
 use Illuminate\Http\Request;
-use App\Http\Requests\CompanyRequest;
 
 class CompanyController extends Controller
 {
@@ -41,16 +40,20 @@ class CompanyController extends Controller
           $file = $request->file('image');
           $name = time().$file->getClientOriginalName();
           $file->move(public_path().'/images/', $name);
-          $fileName = "/images/".$name;
+          $filename = "/images/".$name;
         }else{
-          $fileName = '';
+          if($company){
+            $filename = $company->image;
+          }else{
+            $filename = '';
+          }
         }
         if($company){
           $company->name = $request->input('name');
           $company->abbreviation = $request->input('abreviatura');
           $company->rif = $request->input('rif');
           $company->address = $request->input('address');
-          $company->image = $fileName;
+          $company->image = $filename;
           $company->save();
         }else{
           $company = Company::create([
@@ -58,7 +61,7 @@ class CompanyController extends Controller
             'abbreviation' => $request->input('abreviatura'),
             'rif' => $request->input('rif'),
             'address' => $request->input('address'),
-            'image' => $fileName,
+            'image' => $filename,
           ]);//endcompany::create
         }//endelse
         $account = Account::create([
@@ -66,9 +69,7 @@ class CompanyController extends Controller
           'bank_id' => $bank->id,
           'company_id' => $company->id,
         ]);
-      return redirect('/companies', [
-        'account' => $account
-      ])->with('message', 'La Empresa ha sido registrada correctamente');
+      return redirect('/companies')->with('message', 'La Empresa ha sido registrada correctamente');
     }//endstore
 
     public function search(Request $request){

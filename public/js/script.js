@@ -594,7 +594,6 @@ $(document).ready(function(){
 
 $('#DataTable').DataTable({
   paging: false,
-
 });
 $('.DataTable').DataTable({
     paging: false,

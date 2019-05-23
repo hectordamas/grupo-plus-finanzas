@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Company;
-use App\Bill;
 use App\Client;
-use App\Seller;
+use App\Ebill;
+use App\Register;
+use App\Account;
 
-class BillsController extends Controller
+class EbillsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -28,15 +29,11 @@ class BillsController extends Controller
     public function create()
     {
         $companies = Company::all();
-        $bills = Bill::all();
         $clients = Client::all();
-        $sellers = Seller::all();
 
-        return view('facturacionYCobranza.grupoplus.bills.create', [
+        return view('facturacionYCobranza.grupoplus.ebills.create', [
             'companies' => $companies,
-            'bills' => $bills,
-            'clients' => $clients, 
-            'sellers' => $sellers
+            'clients' => $clients
         ]);
     }
 
@@ -48,35 +45,30 @@ class BillsController extends Controller
      */
     public function store(Request $request)
     {
-     
-    $searchSeller = Seller::where('name', $request->input('seller'))->first();
-    $searchClient = Client::where('name', $request->input('name'))->first();
-
-    if($searchSeller){
-        $client = $searchClient;
-        $seller = $searchSeller;
-
-    }else{
-        $seller = Seller::create([
-            'name' => $request->input('seller'),
-        ]);
-        $client = Client::create([
-            'name' => $request->input('name'),
-            'seller_id' => $seller->id,
-        ]);
-    }
-
-        $bill = Bill::create([
-            'type' => $request->input('type'),
-            'rate' => $request->input('rate'),
+        $account = Account::where('number', $request->input('bank'))->first();
+        $ebill = Ebill::create([
+            'account_id' => $account->id,
+            'client_id' => $request->input('client'),
+            'currency' => $request->input('coin'),
+            'description' => $request->input('observation'),
             'amount' => $request->input('amount'),
-            'date' => $request->input('date'),
-            'company_id' => $request->input('company'),
-            'client_id' => $client->id,
-            'number' => $request->input('number'),
-            'seller_id' => $seller->id
+            'rate' => $request->input('rate'),
         ]);
-
+        $register = Register::create([
+            'date' => $request->input('date'),
+            'type' => 'Ingreso',
+            'beneficiary' => $ebill->client->name,
+            'reason' => 'N/A',
+            'status' => 'Disponible',
+            'contable' => 'N/A',
+            'amount' => $ebill->amount,
+            'rate' => $ebill->rate,
+            'description' => $ebill->description,
+            'account_id' => $account->id,
+            'bill' => 'Sí',
+          ]);//////Register::Create/////////////////////////////
+            $account->entry = $account->entry + $register->amount;
+            $account->save();
         return redirect('/grupoplus')->with('message', 'Su registro se ha creado de manera existosa!');
     }
 

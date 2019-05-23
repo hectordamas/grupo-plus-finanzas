@@ -7,7 +7,6 @@ use App\Account;
 use App\User;
 use App\Bank;
 use App\Company;
-use App\Http\Requests\CompanyRequest;
 
 
 class AccountController extends Controller
@@ -104,9 +103,7 @@ class AccountController extends Controller
         $bank->save();
         $company->save();
         $account->save();
-        return redirect('/companies', [
-          'account' => $account
-        ])->with('message', 'La Cuenta ha sido actualizada correctamente');
+        return redirect('/companies')->with('message', 'La Cuenta ha sido actualizada correctamente');
     }
 
     /**
