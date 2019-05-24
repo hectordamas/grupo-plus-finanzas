@@ -9,7 +9,7 @@
      <div class="card-body d-flex justify-content-center">
        <table class="table table-bordered table-striped" style="width:100%;">
          <thead>
-             <th colspan="3" class="text-center table-dark">
+             <th colspan="3" class="text-center">
              @if($company->image)
               <img src="{{ $company->image }}" alt="{{ $company->name }}" width="80px">
               @else

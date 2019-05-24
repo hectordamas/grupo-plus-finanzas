@@ -9,7 +9,7 @@
                         Ingreso de Pagos
                     </div>
                     <div class="card-body">
-                        <form action="/ebills" method="post" class="row">
+                        <form action="/ebills" method="post" class="row" id="BillForm">
                             @csrf
                             <div class="form-group col-md-3">
                                 <label for="date">Fecha</label>
@@ -28,7 +28,7 @@
                                 <select name="client" id="client" class="form-control" required>
                                     <option value=""></option>
                                     @foreach($clients as $client)
-                                    <option value="{{$client->id}}">{{$client->name}}</option>
+                                    <option value="{{$client->id}}">{{$client->name}} - {{$client->rif}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -47,23 +47,34 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="observation">Referencia de Operación</label>
-                                <input type="text" id="observation" name="observation" class="form-control"/>
+                                <input type="text" id="observation" name="observation" class="form-control" required/>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="amount">
                                     Monto
                                 </label>
-                                <input type="number" step="any" class="form-control" id="amountBill" name="amount"/>
+                                <input type="number" step="any" class="form-control" id="amountBill" name="amount" required/>
                                 <strong id="amountStrong"></strong>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="rate">
                                  Tasa
                                 </label>
-                                <input type="number" step="any" id="rateBill" name="rate" class="form-control"/>
+                                <input type="number" step="any" id="rateBill" name="rate" class="form-control" required/>
                                 <strong id="rateStrong"></strong>
                             </div>
                             <div class="form-group col-md-3">
+                                <label for="billNumber">
+                                    Número de Factura
+                                </label>
+                                <select id="billNumber" name="billNumber" class="form-control select2" required>
+                                    <option value=""></option>
+                                    @foreach($bills->unique('number') as $bill)
+                                    <option value="{{$bill->number}}">{{$bill->number}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group col-md-12">
                                 <input type="submit" class="btn btn-primary" value="Registrar"/>
                             </div>
                         </form>

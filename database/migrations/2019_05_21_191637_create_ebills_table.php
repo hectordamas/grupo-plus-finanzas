@@ -20,6 +20,8 @@ class CreateEbillsTable extends Migration
             $table->foreign('account_id')->references('id')->on('accounts');
             $table->integer('client_id')->unsigned();
             $table->foreign('client_id')->references('id')->on('clients');
+            $table->integer('seller_id')->unsigned();
+            $table->foreign('seller_id')->references('id')->on('sellers');
             $table->string('currency');
             $table->string('description');
             $table->float('amount', 100, 2);

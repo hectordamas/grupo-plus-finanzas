@@ -26,7 +26,7 @@ class CreateBillsTable extends Migration
             $table->foreign('client_id')->references('id')->on('clients');
             $table->integer('seller_id')->unsigned();
             $table->foreign('seller_id')->references('id')->on('sellers');
-            $table->string('number');
+            $table->string('number')->unique();
         });
     }
 

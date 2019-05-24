@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Company;
-use App\Bill;
 use App\Client;
-use App\Seller;
+use App\Http\Requests\ClientsRequest;
 
-class BillsController extends Controller
+
+class ClientsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,17 +26,7 @@ class BillsController extends Controller
      */
     public function create()
     {
-        $companies = Company::all();
-        $bills = Bill::all();
-        $clients = Client::all();
-        $sellers = Seller::all();
 
-        return view('facturacionYCobranza.grupoplus.bills.create', [
-            'companies' => $companies,
-            'bills' => $bills,
-            'clients' => $clients, 
-            'sellers' => $sellers
-        ]);
     }
 
     /**
@@ -46,31 +35,16 @@ class BillsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request){
-     
-    $searchSeller = Seller::where('name', $request->input('seller'))->first();
-    $client = Client::where('rif', $request->input('client'))->first();
-
-    if($searchSeller){
-        $seller = $searchSeller;
-    }else{
-        $seller = Seller::create([
-            'name' => $request->input('seller'),
-        ]);
-    }
-
-        $bill = Bill::create([
-            'type' => $request->input('type'),
-            'rate' => $request->input('rate'),
-            'amount' => $request->input('amount'),
-            'date' => $request->input('date'),
-            'company_id' => $request->input('company'),
-            'client_id' => $client->id,
-            'number' => $request->input('number'),
-            'seller_id' => $seller->id
+    public function store(ClientsRequest $request)
+    {
+        $client = Client::create([
+            'name' => $request->input('name'),
+            'rif' => $request->input('rif'),
         ]);
 
-        return redirect('/grupoplus')->with('message', 'Su registro se ha creado de manera existosa!');
+         return response()->json([
+             'client' => $client 
+         ]);
     }
 
     /**
@@ -81,7 +55,11 @@ class BillsController extends Controller
      */
     public function show($id)
     {
-        //
+        $client = Client::find($id);
+
+        return response()->json([
+            'client' => $client
+        ]);
     }
 
     /**

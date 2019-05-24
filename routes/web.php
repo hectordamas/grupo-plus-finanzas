@@ -81,13 +81,16 @@ Route::group(['middleware' => 'role'], function () {
   Route::get('/tiendagf', function(){
     return view('facturacionYCobranza.tiendagf.index');
  });
+ 
   Route::resource('bills', 'BillsController');
-  Route::get('/getDemand/{id}', 'PayController@show');
   Route::resource('ebills', 'EbillsController');
+  Route::resource('clients', 'ClientsController');
+
   Route::get('/balances/bills', 'SaldosController@balances');
   Route::post('/searchClient', 'BillingScriptController@client');
   Route::get('/report/bill', 'BillingScriptController@report');
   Route::post('/search/bill', 'BillingScriptController@search');
+  Route::get('/getDemand/{id}', 'PayController@show');
 });
 
 Auth::routes();

@@ -106,6 +106,10 @@
     @include('alert.directory')
   @endisset
 
+  @isset($clients)
+    @include('alert.clients')
+  @endisset
+
   @isset($demands)
     @include('alert.cuentasPorPagarYEgreso')
   @endisset

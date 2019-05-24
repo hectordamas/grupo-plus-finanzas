@@ -5,7 +5,6 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Bill;
 use App\Ebill;
-use App\Seller;
 
 class Client extends Model
 {
@@ -16,9 +15,5 @@ class Client extends Model
     }
     public function ebills(){
         return $this->hasMany(Ebill::class);
-    }
-    
-    public function seller(){
-        return $this->belongsTo(Seller::class);
     }
 }

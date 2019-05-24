@@ -11,14 +11,6 @@ use App\Ebill;
 
 class BillingScriptController extends Controller
 {
-    public function client(Request $request){
-        $client = Client::where('name', $request->client)->first();
-
-        return response()->json([
-            'seller' => $client->seller->name
-        ]);
-    }
-
     public function report(){
         return view('facturacionYCobranza.grupoplus.report.search');
     }

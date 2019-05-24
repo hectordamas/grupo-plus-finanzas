@@ -8,7 +8,7 @@
                     Facturación
                 </div>
                 <div class="card-body">
-                    <form action="/bills" method="post">
+                    <form action="/bills" method="post" id="BillForm">
                         @csrf
                         <div class="row">
                             <div class="form-group col-md-3">
@@ -25,12 +25,15 @@
                                 <label for="client">
                                     Cliente
                                 </label>
-                                <select id="client" name="name" class="form-control select2" required>
-                                <option value=""></option>
-                                @foreach($clients as $c)
-                                <option value="{{$c->name}}">{{$c->name}}</option>
-                                @endforeach
-                                </select>
+                                <div class="row ml-1">
+                                    <div style="width:70%;">
+                                        <select id="client" name="client" class="form-control rounded-0" required readonly>
+                                        </select>
+                                    </div>
+                                    <div style="width:15%;">
+                                        <a href="#" id="AñadirCliente" class="btn btn-success rounded-0">Añadir</a>
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="date">
@@ -42,7 +45,7 @@
                                 <label for="amount">
                                     Monto
                                 </label>
-                                <input type="number" step="any" class="form-control" id="amountBill" name="amount"/>
+                                <input type="number" step="any" class="form-control" id="amountBill" name="amount" required/>
                                 <strong id="amountStrong"></strong>
                             </div>
                         </div>
@@ -51,14 +54,14 @@
                                 <label for="rate">
                                  Tasa
                                 </label>
-                                <input type="number" id="rateBill" name="rate" step="any" class="form-control"/>
+                                <input type="number" id="rateBill" name="rate" step="any" class="form-control" required/>
                                 <strong id="rateStrong"></strong>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="number">
                                  Número
                                 </label>
-                                <input type="text" id="number" name="number" class="form-control"/>
+                                <input type="text" id="number" name="number" class="form-control" required/>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="seller">

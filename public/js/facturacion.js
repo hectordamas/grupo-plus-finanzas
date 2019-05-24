@@ -13,23 +13,11 @@ $(document).ready(function(){
 $('#currency, #billCompany').on('input', function(){
   searchBanks();
 });
-
-$('#client').on('select2:select', function(){
-  $.ajax({
-    headers:{
-      'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
-    },
-    url:'/searchClient',
-    type:'POST',
-    dataType: 'json',
-    data:{
-      client: $('#client').val(),
-    },
-    success:function(data){
-      var newOption = new Option(data.seller);
-      $('#seller').html(newOption);
-    }
-  });
+$('#AñadirCliente').on('click', function(){
+  $('.clientes-container').css('display', 'flex');
+});
+$('#Close-Client').on('click', function(){
+  $('.clientes-container').css('display', 'none');
 });
 
 function searchBanks(){
@@ -66,4 +54,83 @@ function searchBanks(){
     }
   }
 
-  $('.DataTables').DataTable();
+  $('#ClientForm').on('submit', function(e){
+    e.preventDefault();
+    var name = $('#clientDirectory').val();
+    var rif = $('#rifDirectory').val();
+
+      $.ajax({
+        headers: {
+          'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
+        },
+        url: '/clients',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+          name:name,
+          rif:rif,
+        },  
+        success:function(data){
+          $('#rifDirectory').val('');
+          $('#clientDirectory').val('');
+
+          $('.clientDirectoryError').html('');
+          $('.rifDirectoryError').html('');
+
+          $('#DirectoryTable').prepend('<tr><td>'+data.client.name+'</td><td>'+data.client.rif+'</td><td><a href="#" onClick="añadirCliente('+data.client.id+')" data-id='+data.client.id+'>Añadir</a></td></tr>');
+          $('.clientes-container').css('display', 'none');
+          $('#client').html('<option value="'+data.client.rif+'">'+ data.client.rif +' - '+ data.client.name+'</option>');
+        },
+        error:function(error){
+          if(error.responseJSON.hasOwnProperty('errors')){
+            $('.clientDirectoryError').html('');
+            $('.rifDirectoryError').html('');
+
+            if(error.responseJSON.errors.name){
+              $('.clientDirectoryError').html(error.responseJSON.errors.name);
+            }
+            if(error.responseJSON.errors.identification){
+              $('.rifDirectoryError').html(error.responseJSON.errors.rif);
+            }
+          }
+        }
+      });
+  });
+
+  function añadirCliente(id){
+    $.ajax({
+      headers:{
+        'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
+      },
+      url: '/clients/' + id,
+      type: 'GET',
+      dataType: 'json',
+      success: function(data){
+      $('#client').html('<option value="'+data.client.rif+'">'+data.client.rif+ ' - ' + data.client.name + '</option>');
+        $('.clientes-container').css('display', 'none');
+      }
+    });
+  }
+  $('.AñadirCliente').on('click', function(){
+    var id = $(this).data('id');
+    $.ajax({
+      headers:{
+        'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
+      },
+      url: '/clients/' + id,
+      type: 'GET',
+      dataType: 'json',
+      success: function(data){
+        $('#client').html('<option value="'+data.client.rif+'">' + data.client.rif + ' - ' + data.client.name + '</option>');
+        $('.clientes-container').css('display', 'none');
+      }
+    });
+  });
+
+  $('#BillForm').on('submit', function(){
+    if(confirm("Estás seguro(a) de ejecutar esta petición?")){
+      return true;
+    }else{
+      return false;
+    }
+  });

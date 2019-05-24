@@ -8,6 +8,7 @@ use App\Client;
 use App\Ebill;
 use App\Register;
 use App\Account;
+use App\Bill;
 
 class EbillsController extends Controller
 {
@@ -30,10 +31,12 @@ class EbillsController extends Controller
     {
         $companies = Company::all();
         $clients = Client::all();
+        $bills = Bill::all();
 
         return view('facturacionYCobranza.grupoplus.ebills.create', [
             'companies' => $companies,
-            'clients' => $clients
+            'clients' => $clients,
+            'bills' => $bills
         ]);
     }
 
@@ -46,9 +49,11 @@ class EbillsController extends Controller
     public function store(Request $request)
     {
         $account = Account::where('number', $request->input('bank'))->first();
+        $bill = Bill::where('number', $request->input('billNumber'))->first();
         $ebill = Ebill::create([
             'account_id' => $account->id,
             'client_id' => $request->input('client'),
+            'seller_id' => $bill->seller->id,
             'currency' => $request->input('coin'),
             'description' => $request->input('observation'),
             'amount' => $request->input('amount'),
@@ -59,7 +64,7 @@ class EbillsController extends Controller
             'type' => 'Ingreso',
             'beneficiary' => $ebill->client->name,
             'reason' => 'N/A',
-            'status' => 'Disponible',
+            'status' => 'Diferido',
             'contable' => 'N/A',
             'amount' => $ebill->amount,
             'rate' => $ebill->rate,
@@ -67,7 +72,7 @@ class EbillsController extends Controller
             'account_id' => $account->id,
             'bill' => 'Sí',
           ]);//////Register::Create/////////////////////////////
-            $account->entry = $account->entry + $register->amount;
+            $account->notavailable = $account->notavailable + $register->amount;
             $account->save();
         return redirect('/grupoplus')->with('message', 'Su registro se ha creado de manera existosa!');
     }

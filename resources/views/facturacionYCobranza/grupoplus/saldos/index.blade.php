@@ -135,25 +135,22 @@
                             @php
                                 $totalBills = 0;
                                 $totalEbills = 0;
+
+                                foreach($seller->bills as $bill){
+                                    $amount = $bill->amount / $bill->rate;
+                                    $totalBills = $totalBills + $amount;
+                                }
+
+                                foreach($seller->ebills as $ebill){
+                                    if($ebill->currency == 'Bolívares'){
+                                        $amount = $ebill->amount / $ebill->rate;
+                                        $totalEbills = $totalEbills + $amount;   
+                                    }else{
+                                        $amount = $ebill->amount;
+                                        $totalEbills = $totalEbills + $amount;   
+                                    }
+                                }
                             @endphp
-
-                            @foreach($seller->clients as $client)
-                                @php
-                                    foreach($client->bills as $bill){
-                                        $amount = $bill->amount / $bill->rate;
-                                        $totalBills = $totalBills + $amount;
-                                    }
-
-                                    foreach($client->ebills as $ebill){
-                                        if($ebill->currency == 'Bolívares'){
-                                            $amount = $ebill->amount / $ebill->rate;
-                                            $totalEbills = $totalEbills + $amount;   
-                                        }else{
-                                            $amount = $ebill->amount;
-                                            $totalEbills = $totalEbills + $amount;   
-                                        }
-                                    }
-                                @endphp
                             <tr>
                                 <td>
                                     {{$seller->name}}
@@ -162,7 +159,6 @@
                                 <td>{{ number_format($totalEbills,2, '.', ',') }} USD</td>
                                 <td>{{ number_format($totalEbills - $totalBills,2, '.', ',') }} USD</td>
                             </tr>
-                            @endforeach
                         @endforeach
                     </tbody>
                 </table>
