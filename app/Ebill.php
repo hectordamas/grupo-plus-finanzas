@@ -25,4 +25,12 @@ class Ebill extends Model
         if($from && $to)
             return $query->where('date','LIKE', [$from, $to]);
     }
+    public function scopeClient($query, $client){
+        if($client)
+            return $query->where('client_id', $client);
+    }
+    public function scopeSeller($query, $seller){
+        if($seller)
+            return $query->where('seller_id', $seller);
+    }
 }

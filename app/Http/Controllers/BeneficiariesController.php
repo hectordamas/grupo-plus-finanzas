@@ -15,7 +15,11 @@ class BeneficiariesController extends Controller
      */
     public function index()
     {
-        //
+        $beneficiaries = Beneficiary::all();
+
+        return view('modify.beneficiaries.index', [
+            'beneficiaries' => $beneficiaries
+        ]);
     }
 
     /**
@@ -71,7 +75,11 @@ class BeneficiariesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $beneficiary = Beneficiary::find($id);
+
+        return view('modify.beneficiaries.edit', [
+            'beneficiary' => $beneficiary
+        ]);
     }
 
     /**
@@ -83,7 +91,15 @@ class BeneficiariesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $beneficiary = Beneficiary::find($id);
+        $beneficiary->name = $request->input('name');
+        $beneficiary->identification = $request->input('identification');
+        $beneficiary->nation = $request->input('nation');
+        $beneficiary->number = $request->input('number');
+        $beneficiary->save();
+
+        return redirect('/beneficiaries')->with('message', 'Beneficiario modificado con éxito');
+
     }
 
     /**
@@ -94,6 +110,7 @@ class BeneficiariesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Beneficiary::destroy($id);
+        return redirect('/beneficiaries')->with('message', 'Beneficiario eliminado con éxito');
     }
 }

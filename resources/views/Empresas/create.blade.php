@@ -13,6 +13,12 @@
           <form id="Empresas" action="/companies" method="post" enctype="multipart/form-data">
             @csrf
              <div class="row">
+             <div class="col-md-12">
+              <h6>
+                Empresa a la que deseas asociar tu cuenta:
+              </h6>
+              <br>
+             </div>
                <div class="form-group col-md-4">
                  <label for="name"><strong>Nombre de la Empresa</strong></label>
                  <select name="name" id="nameSearchCompany" class="form-control select2">
@@ -32,12 +38,12 @@
              </div>
 
              <div class="row">
-               <div class="form-group col-md-6">
+               <div class="form-group col-md-4">
                  <label for="address"><strong>Dirección Fiscal</strong></label>
                  <input name="address" id="address" class="form-control" required />
                </div>
 
-              <div class="form-group col-md-6">
+              <div class="form-group col-md-4">
               <label for="customFile"><strong>Logo:</strong></label>
                 <div class="custom-file">
                   <input type="file" class="custom-file-input" id="customFile" name="image"/>
@@ -48,6 +54,13 @@
              </div>
 
              <div class="row" id="hiddenBankFromCompany">
+                <div class="col-md-12">
+                <br>
+                 <h6>
+                   Banco al que deseas asociar tu cuenta:
+                 </h6>
+                 <br>
+                </div>
                <div class="form-group col-md-4">
                  <label for="typeBank"><strong>Tipo de Banco</strong></label>
                  <select name="typeBank" id="typeBank" class="form-control">
@@ -67,6 +80,15 @@
                <div class="form-group col-md-4">
                  <label for="accountNumber"><strong>Número de Cuenta</strong></label>
                  <input type="number" name="number" required id="accountNumber" class="form-control" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                 @if($errors->first('number'))
+                  <span class="invalid-feedback" role="alert">
+                      <strong>{{ $errors->first('number') }}</strong>
+                  </span>
+                  <br>
+                  <span class="invalid-feedback" role="alert">
+                      <strong>Recuerda que cada empresa debe tener un solo número de cuenta por banco.</strong>
+                  </span>
+                  @endif
                </div>
                
              </div>

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CompanyRequest extends FormRequest
+class CompaniesRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,15 +22,15 @@ class CompanyRequest extends FormRequest
      * @return array
      */
 
-    public function message(){
+    public function messages(){
         return [
-            'number.unique' => 'Este número ya ha sido registrado',
-        ];
+            'number.unique' => 'Este número de cuenta ya ha sido registrado anteriormente'
+        ]; 
     }
     public function rules()
     {
         return [
-            'number' => 'unique:accounts',
+            'number' => 'required|unique:accounts'
         ];
     }
 }

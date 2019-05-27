@@ -6,22 +6,28 @@ use Illuminate\Http\Request;
 use App\Client;
 use App\Bill;
 use App\Ebill;
-
-
+use App\Seller;
 
 class BillingScriptController extends Controller
 {
     public function report(){
-        return view('facturacionYCobranza.grupoplus.report.search');
+        $clients = Client::all();
+        $sellers = Seller::all();
+        return view('facturacionYCobranza.grupoplus.report.search',[
+            'clients' => $clients,
+            'sellers' => $sellers
+        ]);
     }
 
     public function search(Request $request){
         $from = $request->input('from');
         $to = $request->input('to');
         $date = $request->input('date');
+        $seller = $request->input('seller');
+        $client = $request->input('client');
 
-        $bills = Bill::range($from, $to)->date($date)->get();
-        $ebills = Ebill::range($from, $to)->date($date)->get();
+        $bills = Bill::range($from, $to)->date($date)->client($client)->seller($seller)->get();
+        $ebills = Ebill::range($from, $to)->date($date)->client($client)->seller($seller)->get();
 
         $totalBills = 0;
         $totalUSDBills = 0;

@@ -14,22 +14,43 @@
                             <label for="date">
                                 Fecha
                             </label>
-                            <input id="date" type="date" value="{{ date('Y-m-d') }}" class="form-control"/>
+                            <input id="date" type="date" name="date" class="form-control"/>
                         </div>
                         <div class="form-group col-md-3">
                             <label for="from">
                                 Desde:
                             </label>
-                            <input id="from" type="date" class="form-control"/>
+                            <input id="from" type="date" name="from" class="form-control"/>
                         </div>
                         <div class="form-group col-md-3">
                             <label for="to">
                                 Hasta:
                             </label>
-                            <input id="to" type="date" class="form-control"/>
+                            <input id="to" type="date" name="to" class="form-control"/>
                         </div>
                         <div class="form-group col-md-3">
-                            <br>
+                            <label for="client">
+                                Cliente:
+                            </label>
+                            <select id="client" name="client" class="form-control">
+                            <option value=""></option>
+                                @foreach($clients as $client)
+                                    <option value="{{$client->id}}">{{$client->id}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="seller">
+                                Vendedor:
+                            </label>
+                            <select id="seller" name="seller" class="form-control">
+                            <option value=""></option>
+                                @foreach($sellers as $seller)
+                                    <option value="{{$seller->id}}">{{$seller->id}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group col-md-12">
                             <input type="submit" class="btn btn-primary" value="Ver Reporte">
                         </div>
                     </form>

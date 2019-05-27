@@ -5,6 +5,8 @@ use App\Company;
 use App\Bank;
 use App\Account;
 use Illuminate\Http\Request;
+use App\Http\Requests\CompaniesRequest;
+use Illuminate\Support\Facades\Validator;
 
 class CompanyController extends Controller
 {
@@ -23,7 +25,7 @@ class CompanyController extends Controller
     }///////////////////endcreate
 
 
-    public function store(Request $request){
+    public function store(CompaniesRequest $request){
         $bank = Bank::where('name', $request->input('bankName'))->first();
         if($bank){
           $bank->name = $request->input('bankName');
@@ -69,7 +71,8 @@ class CompanyController extends Controller
           'bank_id' => $bank->id,
           'company_id' => $company->id,
         ]);
-      return redirect('/companies')->with('message', 'La Empresa ha sido registrada correctamente');
+
+      return redirect('/companies')->with('message', 'La Empresa ha sido registrada correctamente')->withErrors();
     }//endstore
 
     public function search(Request $request){
