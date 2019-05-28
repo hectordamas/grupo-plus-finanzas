@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Client;
-use App\Http\Requests\ClientsRequest;
+use App\Seller;
 
-
-class ClientsController extends Controller
+class SellersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,10 +14,10 @@ class ClientsController extends Controller
      */
     public function index()
     {
-        $clients = Client::all();
-
-        return view('modify.clients.index', [
-            'clients' => $clients
+        $sellers = Seller::all();
+        
+        return view('modify.sellers.index', [
+            'sellers' => $sellers
         ]);
     }
 
@@ -30,7 +28,7 @@ class ClientsController extends Controller
      */
     public function create()
     {
-
+        //
     }
 
     /**
@@ -39,16 +37,9 @@ class ClientsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ClientsRequest $request)
+    public function store(Request $request)
     {
-        $client = Client::create([
-            'name' => $request->input('name'),
-            'rif' => $request->input('rif'),
-        ]);
-
-         return response()->json([
-             'client' => $client 
-         ]);
+        //
     }
 
     /**
@@ -59,11 +50,7 @@ class ClientsController extends Controller
      */
     public function show($id)
     {
-        $client = Client::find($id);
-
-        return response()->json([
-            'client' => $client
-        ]);
+        //
     }
 
     /**
@@ -74,10 +61,10 @@ class ClientsController extends Controller
      */
     public function edit($id)
     {
-        $client = Client::find($id);
+        $seller = Seller::find($id);
 
-        return view('modify.clients.edit',[
-            'client' => $client
+        return view('modify.sellers.edit', [
+            'seller' => $seller
         ]);
     }
 
@@ -90,11 +77,11 @@ class ClientsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $client = Client::find($id);
-        $client->rif = $request->input('rif');
-        $client->name = $request->input('name');
-        $client->save();
-        return redirect('/clients')->with('message', 'El cliente se ha modificado de manera correcta');
+        $seller = Seller::find($id);
+        $seller->name = $request->input('name');
+        $seller->save();
+
+        return redirect('/sellers')->with('message', 'El Vendedor se ha modificado de forma exitosa');
 
     }
 
@@ -106,8 +93,8 @@ class ClientsController extends Controller
      */
     public function destroy($id)
     {
-        $client = Client::destroy($id);
+        $seller = Seller::destroy($id);
+        return redirect('/sellers')->with('message', 'El Vendedor se ha eliminado de forma exitosa');
 
-        return redirect('/clients')->with('message', 'El cliente se ha eliminado de manera correcta');
     }
 }

@@ -18,7 +18,15 @@
                         </div>
                         <div class="col-md-3 form-group">
                             <label for="number">Número de Cuenta:</label>
-                            <input name="number" type="number" value="{{$beneficiary->number}}" id="number" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required placeholder="Número de Cuenta" class="form-control">
+                            <input name="number" type="number" value="{{$beneficiary->number}}" id="number" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" placeholder="Número de Cuenta" class="form-control" required>
+                        </div>
+                        <div class="col-md-3 form-group">
+                            <label for="number1">Número de Cuenta 2:</label>
+                            <input name="number1" type="number" value="{{$beneficiary->number1}}" id="number1" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  placeholder="Número de Cuenta 2" class="form-control">
+                        </div>
+                        <div class="col-md-3 form-group">
+                            <label for="number2">Número de Cuenta 3:</label>
+                            <input name="number2" type="number" value="{{$beneficiary->number2}}" id="number2" maxlength="20" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" placeholder="Número de Cuenta 3" class="form-control">
                         </div>
                         <div class="col-md-3 form-group">
                             <label for="nation">Tipo:</label>

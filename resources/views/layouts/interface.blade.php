@@ -102,6 +102,7 @@
   <script src="/js/script.js" defer></script>
   <script src="/js/facturacion.js" defer></script>
   <script src="/js/cuentasPorPagarYEgreso.js" defer></script>
+  <script src="/js/beneficiaries.js" defer></script>
   @isset($beneficiaries)
     @include('alert.directory')
   @endisset

@@ -52,6 +52,7 @@
                                         <td><strong>Fecha</strong></td>
                                         <td><strong>Empresa</strong></td>
                                         <td><strong>Cliente</strong></td>
+                                        <td><strong>Vendedor</strong></td>
                                         <td><strong>Banco</strong></td>
                                         <td><strong>Ref.</strong></td>
                                         <td><strong>Monto</strong></td>
@@ -63,6 +64,7 @@
                                         <td>{{ date_format(new DateTime($ebill->date), 'd/m/Y') }}</td>
                                         <td>{{ $ebill->account->company->name }}</td>
                                         <td>{{ $ebill->client->name }}</td>
+                                        <td>{{ $ebill->seller->name }}</td>
                                         <td>{{ $ebill->account->bank->name }}</td>
                                         <td>{{ $ebill->description }}</td>
                                         <td> 

@@ -56,6 +56,32 @@
         </div>
     </a>
 
+    <a href="/bills" class="panel">
+        <div class="row">
+          <div class="col-md-12 text-center">
+          <i class="fas fa-file-invoice" style="font-size:50px; color:white;"></i>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <h2 class="text-center" style="color:white;">Editar (Facturación)</h2>
+          </div>
+        </div>
+    </a>
+
+    <a href="/ebills" class="background">
+        <div class="row">
+          <div class="col-md-12 text-center">
+          <i class="fas fa-file-invoice" style="font-size:50px; color:white;"></i>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <h2 class="text-center" style="color:white;">Editar (Ingresos)</h2>
+          </div>
+        </div>
+    </a>
+
     </div>
 </div>
 @include('alert.modal')

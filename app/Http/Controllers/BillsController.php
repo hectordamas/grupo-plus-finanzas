@@ -17,7 +17,11 @@ class BillsController extends Controller
      */
     public function index()
     {
-        //
+        $bills = Bill::all();
+
+        return view('modify.bills.index', [
+            'bills' => $bills
+        ]);
     }
 
     /**
@@ -92,7 +96,16 @@ class BillsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $bill = Bill::find($id);
+        $sellers = Seller::all();
+        $companies = Company::all();
+        $clients = Client::all();
+        return view('modify.bills.edit', [
+            'bill' => $bill,
+            'sellers' => $sellers,
+            'clients' => $clients,
+            'companies' => $companies
+        ]);
     }
 
     /**
@@ -104,7 +117,18 @@ class BillsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $bill = Bill::find($id);
+        $bill->type = $request->input('type');
+        $bill->rate = $request->input('rate');
+        $bill->amount = $request->input('amount');
+        $bill->date = $request->input('date');
+        $bill->company_id = $request->input('company');
+        $bill->client_id = $request->input('client');
+        $bill->number = $request->input('number');
+        $bill->seller_id = $request->input('seller');
+        $bill->save();
+
+        return redirect('/bills')->with('message', 'Su factura se ha modificado de manera existosa!');
     }
 
     /**
@@ -115,6 +139,8 @@ class BillsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Bill::destroy($id);
+        
+        return redirect('/bills')->with('message', 'Su factura se ha eliminado de manera existosa!');
     }
 }

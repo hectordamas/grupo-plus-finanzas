@@ -72,7 +72,7 @@ class CompanyController extends Controller
           'company_id' => $company->id,
         ]);
 
-      return redirect('/companies')->with('message', 'La Empresa ha sido registrada correctamente')->withErrors();
+      return redirect('/companies')->with('message', 'La Empresa ha sido registrada correctamente');
     }//endstore
 
     public function search(Request $request){

@@ -35,7 +35,7 @@
                                 <td> {{$demand->company->name}} </td>
                                 <td> {{ date_format(new DateTime($demand->currentDate), 'd/m/Y') }} </td>
                                 <td> {{ date_format(new DateTime($demand->payDate), 'd/m/Y') }} </td>
-                                <td> <a href="#" data-id="{{$demand->beneficiary->id}}" class="beneficiary-modal">{{$demand->beneficiary->name}}</a> </td>
+                                <td> <a href="#" data-id="{{$demand->beneficiary->id}}" data-number="{{$demand->number}}" class="beneficiary-modal">{{$demand->beneficiary->name}}</a> </td>
                                 <td> {{$demand->contable}}</td>
                                 <td> {{$demand->reason}} </td>
                                 <td> {{number_format($demand->amount, 2, '.', ',') }} {{$demand->coin}} </td>

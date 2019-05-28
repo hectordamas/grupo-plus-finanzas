@@ -52,7 +52,7 @@
                                 </td>
                                 <td>{{ number_format($totalBills,2, '.', ',') }} USD</td>
                                 <td>{{ number_format($totalEbills,2, '.', ',') }} USD</td>
-                                <td>{{ number_format($totalEbills - $totalBills,2, '.', ',') }} USD</td>
+                                <td>{{ number_format($totalBills - $totalEbills,2, '.', ',') }} USD</td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -106,7 +106,7 @@
                                 </td>
                                 <td>{{ number_format($totalBills,2, '.', ',') }} USD</td>
                                 <td>{{ number_format($totalEbills,2, '.', ',') }} USD</td>
-                                <td>{{ number_format($totalEbills - $totalBills,2, '.', ',') }} USD</td>
+                                <td>{{ number_format($totalBills - $totalEbills,2, '.', ',') }} USD</td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -157,7 +157,7 @@
                                 </td>
                                 <td>{{ number_format($totalBills,2, '.', ',') }} USD</td>
                                 <td>{{ number_format($totalEbills,2, '.', ',') }} USD</td>
-                                <td>{{ number_format($totalEbills - $totalBills,2, '.', ',') }} USD</td>
+                                <td>{{ number_format($totalBills - $totalEbills,2, '.', ',') }} USD</td>
                             </tr>
                         @endforeach
                     </tbody>

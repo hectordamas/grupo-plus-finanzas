@@ -85,6 +85,7 @@ Route::group(['middleware' => 'role'], function () {
   Route::resource('bills', 'BillsController');
   Route::resource('ebills', 'EbillsController');
   Route::resource('clients', 'ClientsController');
+  Route::resource('sellers', 'SellersController');
 
   Route::get('/balances/bills', 'SaldosController@balances');
   Route::post('/searchClient', 'BillingScriptController@client');

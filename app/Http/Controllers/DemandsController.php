@@ -71,6 +71,7 @@ class DemandsController extends Controller
             'applicant'  => Auth::user()->name,
             'company_id' => $request->input('empresa'),
             'paid' => 'Por Pagar',
+            'number' => $request->input('number'),
         ]);
         Mail::send('cuentasPorPagar.solicitud.mail', ['demand'=> $demand], function($message) use ($demand){
             $subject = 'Verifica la solicitud N° '. $demand->id .' realizada por '. Auth::user()->name;

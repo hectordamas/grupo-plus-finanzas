@@ -35,7 +35,7 @@
                             <select id="client" name="client" class="form-control">
                             <option value=""></option>
                                 @foreach($clients as $client)
-                                    <option value="{{$client->id}}">{{$client->id}}</option>
+                                    <option value="{{$client->id}}">{{$client->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -46,7 +46,18 @@
                             <select id="seller" name="seller" class="form-control">
                             <option value=""></option>
                                 @foreach($sellers as $seller)
-                                    <option value="{{$seller->id}}">{{$seller->id}}</option>
+                                    <option value="{{$seller->id}}">{{$seller->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="company">
+                                Empresas:
+                            </label>
+                            <select id="company" name="company" class="form-control">
+                            |   <option value=""></option>
+                                @foreach($companies as $company)
+                                    <option value="{{$company->id}}">{{$company->name}}</option>
                                 @endforeach
                             </select>
                         </div>

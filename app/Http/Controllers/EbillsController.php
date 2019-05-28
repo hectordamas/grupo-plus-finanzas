@@ -9,6 +9,7 @@ use App\Ebill;
 use App\Register;
 use App\Account;
 use App\Bill;
+use App\Seller;
 
 class EbillsController extends Controller
 {
@@ -19,7 +20,14 @@ class EbillsController extends Controller
      */
     public function index()
     {
-        //
+        $ebills = Ebill::all();
+        $clients = Client::all();
+        $companies = Company::all();
+        return view('modify.ebills.index', [
+            'ebills' => $ebills,
+            'clients' => $clients,
+            'companies' => $companies
+        ]);
     }
 
     /**
@@ -51,6 +59,7 @@ class EbillsController extends Controller
         $account = Account::where('number', $request->input('bank'))->first();
         $bill = Bill::where('number', $request->input('billNumber'))->first();
         $ebill = Ebill::create([
+            'date' => $request->input('date'),
             'account_id' => $account->id,
             'client_id' => $request->input('client'),
             'seller_id' => $bill->seller->id,
@@ -96,7 +105,18 @@ class EbillsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $ebill = Ebill::find($id);
+        $bills = Bill::all();
+        $sellers = Seller::all();
+        $companies = Company::all();
+        $clients = Client::all();
+        return view('modify.ebills.edit', [
+            'ebill' => $ebill,
+            'sellers' => $sellers,
+            'clients' => $clients,
+            'bills' => $bills,
+            'companies' => $companies
+        ]);
     }
 
     /**
@@ -108,7 +128,20 @@ class EbillsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $ebill = Ebill::find($id);
+        $account = Account::where('number', $request->input('bank'))->first();
+            $ebill->account_id = $account->id;
+            $ebill->client_id = $request->input('client');
+            $ebill->seller_id = $request->input('seller');
+            $ebill->currency = $request->input('coin');
+            $ebill->description = $request->input('observation');
+            $ebill->amount = $request->input('amount');
+            $ebill->rate = $request->input('rate');
+            $ebill->save();
+
+            return redirect('/ebills')->with('message', 'Su Ingreso se ha modificado de manera existosa!');
+
+        
     }
 
     /**
@@ -119,6 +152,8 @@ class EbillsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Ebill::destroy($id);
+        
+        return redirect('/ebills')->with('message', 'Su ingreso de pago se ha eliminado de manera existosa!');
     }
 }

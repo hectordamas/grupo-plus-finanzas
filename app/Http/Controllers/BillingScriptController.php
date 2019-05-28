@@ -7,15 +7,19 @@ use App\Client;
 use App\Bill;
 use App\Ebill;
 use App\Seller;
+use App\Company;
 
 class BillingScriptController extends Controller
 {
     public function report(){
         $clients = Client::all();
         $sellers = Seller::all();
+        $companies = Company::all();
+
         return view('facturacionYCobranza.grupoplus.report.search',[
             'clients' => $clients,
-            'sellers' => $sellers
+            'sellers' => $sellers,
+            'companies' => $companies
         ]);
     }
 
@@ -25,9 +29,10 @@ class BillingScriptController extends Controller
         $date = $request->input('date');
         $seller = $request->input('seller');
         $client = $request->input('client');
+        $company = $request->input('company');
 
-        $bills = Bill::range($from, $to)->date($date)->client($client)->seller($seller)->get();
-        $ebills = Ebill::range($from, $to)->date($date)->client($client)->seller($seller)->get();
+        $bills = Bill::range($from, $to)->date($date)->client($client)->seller($seller)->company($company)->get();
+        $ebills = Ebill::range($from, $to)->date($date)->client($client)->seller($seller)->company($company)->get();
 
         $totalBills = 0;
         $totalUSDBills = 0;

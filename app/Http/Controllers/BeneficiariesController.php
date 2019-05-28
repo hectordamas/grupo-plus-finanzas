@@ -44,6 +44,8 @@ class BeneficiariesController extends Controller
             'identification' => $request->identification,
             'name' => $request->name,
             'number'=> $request->number,
+            'number1'=> $request->number1,
+            'number2'=> $request->number2,
             'nation' => $request->nation
         ]);
 
@@ -96,6 +98,8 @@ class BeneficiariesController extends Controller
         $beneficiary->identification = $request->input('identification');
         $beneficiary->nation = $request->input('nation');
         $beneficiary->number = $request->input('number');
+        $beneficiary->number1 = $request->input('number1');
+        $beneficiary->number2 = $request->input('number2');
         $beneficiary->save();
 
         return redirect('/beneficiaries')->with('message', 'Beneficiario modificado con éxito');

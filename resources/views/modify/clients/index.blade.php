@@ -1,36 +1,28 @@
 @extends('layouts.interface')
 @section('content')
 <br>
-<div class="container-fluid">
+<div class="container">
     <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    Modificar Beneficiarios
+                    Modificar Clientes
                 </div>
                 <div class="card-body">
                 <table class="table table-striped table-bordered" id="DataTable" width="100%">
                     <thead class="table-dark">
-                            <th>Beneficiario</th>
-                            <th>Tipo</th>
-                            <th>Identificación</th>
-                            <th>Cuenta °1</th>
-                            <th>Cuenta °2</th>
-                            <th>Cuenta °3</th>
+                            <th>Clientes</th>
+                            <th>RIF</th>
                             <th>Eliminar</th>
                             <th>Modificar</th>
                         </thead>
                     <tbody>
-                        @foreach($beneficiaries as $beneficiary)
+                        @foreach($clients as $client)
                         <tr>
-                            <td> {{$beneficiary->name}} </td>
-                            <td> {{$beneficiary->nation}} </td>
-                            <td> {{$beneficiary->identification}} </td>
-                            <td> {{$beneficiary->number}} </td>
-                            <td> {{$beneficiary->number1}} </td>
-                            <td> {{$beneficiary->number2}} </td>
+                            <td> {{$client->name}} </td>
+                            <td> {{$client->rif}} </td>
                             <td>
-                                <form action="/beneficiaries/{{$beneficiary->id}}" method="post">
+                                <form action="/clients/{{$client->id}}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger">
@@ -39,7 +31,7 @@
                                 </form>
                             </td>
                             <td>
-                                <a href="/beneficiaries/{{$beneficiary->id}}/edit" class="btn btn-success">
+                                <a href="/clients/{{$client->id}}/edit" class="btn btn-success">
                                     <i class="fas fa-pen"></i>
                                 </a>
                             </td>

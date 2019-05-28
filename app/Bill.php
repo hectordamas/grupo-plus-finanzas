@@ -27,7 +27,11 @@ class Bill extends Model
     }
     public function scopeRange($query, $from, $to){
         if($from && $to)
-            return $query->where('date','LIKE', [$from, $to]);
+            return $query->whereBetween('date', [$from, $to]);
+    }
+
+    public function scopeCompany($query, $company){
+        return $query->where('company_id', $company);
     }
 
     public function scopeClient($query, $client){

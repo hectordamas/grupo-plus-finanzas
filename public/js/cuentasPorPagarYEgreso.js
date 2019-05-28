@@ -1,8 +1,22 @@
+$('#CrearSolicitud').on('submit', function(){
+  if(confirm('Estás seguro de crear esta solicitud')){
+    return true
+  }else{
+    return false
+  }
+});
+
 $('#TipoRegistro').on('input', function(){
     if($('#TipoRegistro').val() ==  'Egreso'){
         $('.cuentas-container').css('display', 'flex');
     }
 });
+
+$('.statusDemands').on('click', function(){
+  $('#formDemandsStatus').submit();
+});
+
+
 $('#Pay').on('click', function(){
      var id = $(this).data('id');
      $.ajax({

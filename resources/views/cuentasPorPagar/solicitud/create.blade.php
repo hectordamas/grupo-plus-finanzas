@@ -54,6 +54,7 @@
                             Beneficiario | Proveedor
                         </label>
                         <div class="d-flex">
+                            <input type="hidden" id="numeroDeCuenta" name="number" value=""/>
                             <select type="text" name="beneficiary" readonly id="beneficiary" class="form-control mr-2">
                             </select>
                             <a href="#" class="btn btn-success rounded-0" id="Directory">Directorio</a>
